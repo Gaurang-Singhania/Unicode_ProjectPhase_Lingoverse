@@ -1,0 +1,22 @@
+<svg width="1280" height="832" viewBox="0 0 1280 832" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_192_697)">
+<rect width="1280" height="832" fill="white"/>
+<ellipse cx="1412" cy="341" rx="390" ry="341" fill="url(#paint0_radial_192_697)"/>
+<ellipse cx="36.5" cy="60" rx="273.5" ry="262" fill="url(#paint1_radial_192_697)"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_192_697" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1412 341) rotate(90) scale(341 390)">
+<stop offset="0.112725" stop-color="#DAD9FF"/>
+<stop offset="0.91" stop-color="#F0F0FE" stop-opacity="0.11"/>
+<stop offset="1" stop-color="#F0F0FE" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="paint1_radial_192_697" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(36.5 60) rotate(90) scale(262 273.5)">
+<stop offset="0.112725" stop-color="#DAD9FF" stop-opacity="0.92"/>
+<stop offset="0.875" stop-color="#E9E9FF" stop-opacity="0.11"/>
+<stop offset="1" stop-color="#E9E9FF" stop-opacity="0"/>
+</radialGradient>
+<clipPath id="clip0_192_697">
+<rect width="1280" height="832" fill="white"/>
+</clipPath>
+</defs>
+</svg>
