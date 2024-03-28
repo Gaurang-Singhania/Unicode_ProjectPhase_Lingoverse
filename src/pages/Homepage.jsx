@@ -5,6 +5,8 @@ import waves from '../assets/landingpage/Component_1.svg';
 import study from '../assets/landingpage/lp_illustration.svg';
 import students from '../assets/landingpage/students_in_a_class.svg'
 import video_call from '../assets/landingpage/Video_Call.svg'
+import girl_music from '../assets/landingpage/girl_music.svg'
+import Question from '../assets/landingpage/Question.svg'
 
 
 
@@ -87,6 +89,20 @@ const Homepage = () => {
                     <span className="absolute p-4 z-30 text-6xl" style={{ top: 550, left: 800, fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Connect and Collaborate
                     </span>
                     <span className="absolute p-4 z-30 text-3xl" style={{ top: 640, left: 800, fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Engage in video calls and language-specific chat <br />  rooms. Foster community-based learning, sharing <br />  insights and experiences with fellow language <br />  enthusiasts.
+                    </span>
+                </div>
+            </div>
+            <div className="relative">
+                <div className="h-screen flex justify-end items-end w-full relative" style={{ height: '940px' }}>
+                    <span className="absolute top-20 left-12 p-4 z-30 text-7xl" style={{ fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Expand Your Horizon
+                    </span>
+                    <img src={girl_music} alt="study" className="absolute top-0 left-90 object-cover object-bottom z-20" width="700" height="476" />
+                    <span className="absolute top-60 left-12 p-4 z-30 text-4xl" style={{ fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Discover curated recommendations for movies, <br /> books, and audio songs. Immerse yourself in <br />  authentic cultural content while enhancing <br /> language proficiency.
+                    </span>
+                    <img src={Question} alt="study" className="absolute top-2/4 left-60 object-cover object-bottom z-20" width="350" height="406" />
+                    <span className="absolute p-4 z-30 text-6xl" style={{ top: 550, left: 800, fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Refine your skills
+                    </span>
+                    <span className="absolute p-4 z-30 text-3xl" style={{ top: 640, left: 800, fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Receive detailed feedback on quiz performance.<br /> Understand and overcome mistakes with <br /> explanations for incorrect answers at each level.
                     </span>
                 </div>
             </div>
