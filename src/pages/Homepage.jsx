@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import '../style.css'
 import Typed from 'typed.js';
 import waves from '../assets/landingpage/Component_1.svg';
@@ -60,7 +61,10 @@ const Homepage = () => {
             };
         }
     }, [el]);
-
+    const navigate = useNavigate();
+    const handleClick=(e)=>{
+        navigate('/login')
+      }
     return (
         <>
             <div>
@@ -79,7 +83,7 @@ const Homepage = () => {
                     <span className="absolute top-96 left-64 p-4 z-40 text-5xl" style={{ fontFamily: 'Literata, serif', fontWeight: 1000, color: '#3A3148' }} ref={el} />
                     <img src={study} alt="study" className="absolute top-0 left-90 object-cover object-bottom z-20" />
                     <span className="absolute top-3/4 left-52 p-4 z-40">
-                        <button {...shimmerComponent.component.props}>
+                        <button {...shimmerComponent.component.props} onClick={handleClick}>
                             {shimmerComponent.component.children}
                         </button></span>
                 </div>
