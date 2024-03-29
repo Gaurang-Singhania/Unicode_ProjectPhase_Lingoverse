@@ -1,5 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Literata&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Literata&display=swap");
 
 .custom-gradient {
-    background: linear-gradient(179.05deg, #CBCAFA 0.82%, #E9E9FF 43.39%, #FFFFFF 99.19%);
-  }
+  background: linear-gradient(
+    179.05deg,
+    #cbcafa 0.82%,
+    #e9e9ff 43.39%,
+    #ffffff 99.19%
+  );
+}
+
+.custom-gradient2 {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F0EAFF 100%);
+}
