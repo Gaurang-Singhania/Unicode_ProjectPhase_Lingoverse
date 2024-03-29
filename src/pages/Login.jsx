@@ -22,7 +22,7 @@ const Login = () => {
   }
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center relative bg-[#FEF5F2]">
+    <div className="h-screen w-screen flex justify-center items-center relative bg-[#FEF5F2]"style={{ fontFamily: 'Literata, serif'}}>
         
       <img src={waves} alt="waves" className="h-auto w-full z-0 flex justify-end items-end absolute bottom-0 left-0 "/>
 
@@ -38,7 +38,7 @@ const Login = () => {
             placeholder="Username"
             type="text"
             onChange={(e) => setUsername(e.target.value)}
-            className="border-b-2 border-slate-400 w-64 py-2 bg-transparent outline-none font-semibold text-slate-700"
+            className="border-b-2 border-slate-400 w-64 py-2 bg-transparent outline-none font-medium text-slate-700"
             />
             <span className="border-b-2 border-slate-400 pb-2">
                 <img src={user}/>
@@ -50,7 +50,7 @@ const Login = () => {
             placeholder="Password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
-            className="border-b-2 border-slate-400 w-64 py-2 bg-transparent outline-none font-semibold text-slate-700"
+            className="border-b-2 border-slate-400 w-64 py-2 bg-transparent outline-none font-medium text-slate-700"
             />
             <span className="border-b-2 border-slate-400 pb-2">
                 <img src={lock}/>
@@ -61,7 +61,7 @@ const Login = () => {
         <button className="" type="submit" onClick={handleSubmit}>Log in</button>
       </div>
 
-      <span className="text-[#B6B6B6] font-semibold text-xl">Don't have an account? </span>
+      <span className="text-[#B6B6B6] font-medium text-xl">Don't have an account? </span>
       <span className="border-b-2 border-[#7D7D7D] text-[#7D7D7D] font-semibold text-xl cursor-pointer" onClick={handleSignup}> Sign up</span>
 
         </div>
