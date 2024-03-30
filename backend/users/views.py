@@ -20,13 +20,13 @@ class LoginView(APIView):
         email = request.data['email']
         password = request.data['password']
 
-        user = User.objects.filter(email=email).first()
+        user = User.objects.filter(email=email, password=password)
 
         if user is None:
             raise AuthenticationFailed('User Not found!')
         
-        if not user.check_password(password):
-            raise AuthenticationFailed('Incorrect Password')
+        # if not user.check_password(password):
+        #     raise AuthenticationFailed('Incorrect Password')
         
         exp = timezone.now() + datetime.timedelta(minutes=60)
         int_time = timezone.now()
