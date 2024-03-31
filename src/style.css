@@ -16,6 +16,9 @@
 .custom-gradient3 {
   background: linear-gradient(0deg, #DCDBFF 26.59%, #FEFEFF 83.15%);
 }
+.custom-gradient4 {
+  background: linear-gradient(0deg, #F8F8FF, #FEF5F2);
+}
 
 .ellipse{
   width: 180px;
@@ -46,4 +49,8 @@
     0 0 60px 30px #e6e6ff, 
     0 0 100px 60px #eeeeff, 
     0 0 140px 90px #e6e6ff; 
+}
+
+input[type="checkbox"] {
+  accent-color: #60359E;
 }
