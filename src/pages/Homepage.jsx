@@ -20,6 +20,7 @@ import japanese from '../assets/landingpage/Japanese.png'
 
 // npm install typedjs
 // npm i framer-motion clsx tailwind-merge react-element-to-jsx-string
+// npm install react-router-dom
 
 
 
@@ -43,17 +44,9 @@ const Homepage = () => {
     useEffect(() => {
         if (el.current) {
             const typed = new Typed(el.current, {
-                //                 /**
-                //  * @property {boolean} showCursor show cursor
-                //  * @property {string} cursorChar character for cursor
-                //  * @property {boolean} autoInsertCss insert CSS for cursor and fadeOut into HTML <head>
-                //  */
-
                 strings: ['Hello', 'Hola', 'Bonjour', 'Hallo', 'Ciao'],
                 typeSpeed: 70,
                 showCursor: false,
-                // cursorChar: '|',
-                // autoInsertCss: false,
             });
 
             return () => {
@@ -62,9 +55,9 @@ const Homepage = () => {
         }
     }, [el]);
     const navigate = useNavigate();
-    const handleClick=(e)=>{
+    const handleClick = (e) => {
         navigate('/login')
-      }
+    }
     return (
         <>
         <div className="h-screen w-full relative">

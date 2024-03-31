@@ -5,6 +5,7 @@ import user from "../assets/landingpage/User3.svg";
 import lock from "../assets/landingpage/Lock.svg";
 import Email from "../assets/landingpage/Email.svg";
 import cross from "../assets/landingpage/Cross.svg";
+import Navbar from "./Navbar";
 
 const Register = () => {
 
@@ -24,6 +25,8 @@ const Register = () => {
   }
 
   return (
+    <>
+    <Navbar/>
     <div className="h-screen w-screen flex justify-center items-center relative bg-[#FEF5F2]"style={{ fontFamily: 'Literata, serif'}}>
         
       <img src={waves} alt="waves" className="h-auto w-full z-0 flex justify-end items-end absolute bottom-0 left-0 "/>
@@ -84,6 +87,7 @@ const Register = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
