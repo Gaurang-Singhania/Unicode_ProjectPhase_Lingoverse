@@ -41,6 +41,7 @@ const Register = () => {
             type="text"
             onChange={(e) => setEmail(e.target.value)}
             className="border-b-2 border-slate-400 w-64 py-2 bg-transparent outline-none font-medium text-slate-700"
+            required
             />
             <span className="border-b-2 border-slate-400 pb-2">
                 <img src={Email} className="w-8 h-8"/>
@@ -53,6 +54,7 @@ const Register = () => {
             type="text"
             onChange={(e) => setUsername(e.target.value)}
             className="border-b-2 border-slate-400 w-64 py-2 bg-transparent outline-none font-medium text-slate-700"
+            required
             />
             <span className="border-b-2 border-slate-400 pb-2">
                 <img src={user} className="w-8 h-8"/>
@@ -65,6 +67,7 @@ const Register = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             className="border-b-2 border-slate-400 w-64 py-2 bg-transparent outline-none font-medium text-slate-700"
+            required
             />
             <span className="border-b-2 border-slate-400 pb-2">
                 <img src={lock} className="w-8 h-8"/>
