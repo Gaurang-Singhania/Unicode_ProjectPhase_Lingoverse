@@ -14,6 +14,7 @@ import english from '../assets/landingpage/English.png'
 import french from '../assets/landingpage/French.png'
 import hindi from '../assets/landingpage/Hindi.png'
 import japanese from '../assets/landingpage/Japanese.png'
+import scrollup from '../assets/landingpage/Scrollup.svg'
 
 
 // IMP: DO THESE INSTALLATIONS BEFORE RUNNING THE CODE
@@ -58,16 +59,25 @@ const Homepage = () => {
     const handleClick = (e) => {
         navigate('/login')
     }
+    const scrollUp = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          });
+    }
     return (
         <>
         <div className="h-screen w-full relative">
         <div className='h-screen flex justify-end items-end relative z-0'>
+            <div className='ellipse rounded-full absolute -top-8 -left-8'></div>
+            <div className='ellipse rounded-full absolute top-[35%] left-[40%]'></div>
+            <div className='ellipse2 rounded-full absolute top-[-20%] left-[65%]'></div>
             <img src={waves} alt="waves" className="object-cover object-bottom w-screen h-auto" />
         </div>
         <div className='flex h-screen w-full absolute top-0 left-0 z-1'>
             <div className='flex flex-col h-full w-[60vw] justify-center ml-32'>
                 <p className="p-4 z-30  xl:text-6xl md:text-5xl text-gray-800" style={{ fontFamily: 'Literata, serif', fontWeight: 800}}>Welcome to
-                    <span style={{ fontFamily: 'Literata, serif', color: '#60359E', fontWeight: 800 }}> LinguaVerse
+                    <span style={{ fontFamily: 'Literata, serif', color: '#60359E', fontWeight: 800 }}> LingoVerse
                     </span>
                     <span style={{ fontFamily: 'Literata, serif', fontWeight: 800 }}>,
                     </span>
@@ -114,14 +124,16 @@ const Homepage = () => {
             </div>
             <div className="">
                 <div className="h-screen flex flex-col justify-center items-center w-full relative" style={{ height: '900px' }}>
-                    <div className='flex'>
+                <div className='ellipse rounded-full z-0 absolute top-[30%] right-[0%]'></div>
+                <div className='ellipse3 rounded-full z-0 absolute top-[-10%] left-[0%]'></div>
+                    <div className='flex relative z-1'>
                     <div>
                     <p className="p-4 z-30 text-5xl" style={{ fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Expand Your Horizon</p>
                     <p className="p-4 z-30 text-2xl" style={{ fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Discover curated recommendations for movies, <br /> books, and audio songs. Immerse yourself in <br />  authentic cultural content while enhancing <br /> language proficiency.</p>
                     </div>
                     <img src={girl_music} alt="study" className="object-cover object-bottom z-20 overflow-hidden" width="600" height="376" />
                     </div>
-                    <div className='flex'>
+                    <div className='flex relative z-1'>
                         <div style={{width:"600px" ,height:"540px"}}>
                     <img src={Question} alt="study" className="object-cover object-bottom z-20 mr-8" width="400" height="276" />
                         </div>
@@ -158,6 +170,7 @@ const Homepage = () => {
                 <img src={spanish} alt="study" className="absolute xl:top-[15%] xl:left-[70%] md:top-[15%] md:left-[75%] object-cover object-bottom z-20" />
                 <img src={japanese} alt="study" className="absolute xl:top-[45%] xl:left-[70%] md:top-[45%] md:left-[75%] object-cover object-bottom z-20 border border-black rounded border-solid" />
             </div>
+            <img src={scrollup} alt="scrollup" className='animate-bounce cursor-pointer absolute bottom-8 right-8'onClick={scrollUp}/>
         </div>
         </>
     );
