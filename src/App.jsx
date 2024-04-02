@@ -4,7 +4,7 @@ import Homepage from './pages/Homepage'
 import Login from './pages/Login';
 import Register from './pages/Register';
 import JoinCommunities from './pages/JoinCommunities';
-import Language from './pages/Language';
+import LanguageSelect from './pages/LanguageSelect';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/joincommunities" element={<JoinCommunities />}/>
-        <Route path="/language" element={<Language />}/>
+        <Route path="/languageselect" element={<LanguageSelect />}/>
       </Routes>
     </BrowserRouter>
     </>
