@@ -13,8 +13,8 @@ const Navbar = () => {
       <div className="flex items-center justify-between h-12">
         {/* Logo */}
         <div className="flex items-center"> 
-          <img src={logo} className="mr-2" alt="Logo" /> 
-          <span className='absolute text-white font-bold text-2xl ml-24' style={{ fontFamily: 'Literata, serif', fontWeight: 800 }}>LingoVerse</span>
+          <img src={logo} className="h-12" alt="Logo" /> 
+          <span className='absolute text-white font-bold text-2xl ml-10' style={{ fontFamily: 'Literata, serif', fontWeight: 800 }}>LingoVerse</span>
         </div>
         {/* Navigation links */}
         <div className="hidden sm:flex sm:items-center sm:space-x-4 ml-auto">
