@@ -20,17 +20,18 @@ class Questions(models.Model):
     level = models.CharField(max_length=10, choices=level_choices)
 
 
-# class Quiz(models.Model):
-#     quiz_uuid = models.UUIDField(default=uuid.uuid4, auto_created=True, primary_key=True)
-#     level = models.CharField(max_length=50)
-#     #user fk
-#     score = models.IntegerField()
-#     is_pass = models.BooleanField(default=False)
+class Quiz(models.Model):
+    quiz_uuid = models.UUIDField(default=uuid.uuid4, auto_created=True, primary_key=True)
+    level = models.CharField(max_length=50)
+    user = models.ForeignKey('users.User', null=False, blank=False, on_delete=models.CASCADE)
+    score = models.IntegerField()
+    is_pass = models.BooleanField(default=False)
 
-    # class Meta:
-    #     unique_together = ('quiz_uuid', 'user')
+    class Meta:
+        unique_together = ('quiz_uuid', 'user')
 
 
-# class QuestionsQuizRelation(models.Model):
-#     questions fk
-#     quiz = models.ForeignKey(Quiz, null=False, blank=False)
+class QuestionsQuizRelation(models.Model):
+    quiz = models.ForeignKey(Quiz, null=False, blank=False, on_delete=models.CASCADE)
+    questions = models.ForeignKey(Questions, null=False, blank=False, on_delete=models.CASCADE)
+    
