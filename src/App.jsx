@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import JoinCommunities from './pages/JoinCommunities';
 import LanguageSelect from './pages/LanguageSelect';
+import Community from './pages/Community';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={<Register />}/>
         <Route path="/joincommunities" element={<JoinCommunities />}/>
         <Route path="/languageselect" element={<LanguageSelect />}/>
+        <Route path="/community" element={<Community />}/>
       </Routes>
     </BrowserRouter>
     </>

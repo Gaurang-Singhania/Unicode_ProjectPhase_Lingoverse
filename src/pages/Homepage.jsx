@@ -22,6 +22,7 @@ import scrollup from '../assets/landingpage/Scrollup.svg'
 // npm install typedjs
 // npm i framer-motion clsx tailwind-merge react-element-to-jsx-string
 // npm install react-router-dom
+// npm i react-modal
 
 
 
