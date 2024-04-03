@@ -18,7 +18,7 @@ const Language = () => {
                     </div>
                 </div>
 
-                {/* <!-- Coonect and Learn --> */}
+                {/* <!-- Connect and Learn --> */}
                 <div class="bg-green-100 p-6 rounded-xl relative transition-transform transform hover:scale-130 w-64 h-56 hover:scale-110 cursor-pointer">
                     <img src={call} alt="study" className="absolute inset-0 object-cover z-20 mx-auto my-auto w-56" />
                     <div className='ml-64'>
