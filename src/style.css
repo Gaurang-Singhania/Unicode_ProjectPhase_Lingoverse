@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Literata&display=swap");
 
+.custom-select {
+  background-color: transparent;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.custom-select option {
+  background-color: #F2F2F2; 
+}
+
 .custom-gradient {
   background: linear-gradient(
     179.05deg,
@@ -18,6 +31,10 @@
 }
 .custom-gradient4 {
   background: linear-gradient(0deg, #F8F8FF, #FEF5F2);
+}
+
+.custom-gradient5 {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F7F4FF 52.5%, #F0EAFF 100%);
 }
 
 .ellipse{

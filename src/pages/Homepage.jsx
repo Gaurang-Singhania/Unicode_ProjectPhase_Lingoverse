@@ -64,88 +64,88 @@ const Homepage = () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth',
-          });
+        });
     }
     return (
         <>
-        <div className="h-screen w-full relative">
-        <div className='h-screen flex justify-end items-end relative z-0'>
-            <div className='ellipse rounded-full absolute -top-8 -left-8'></div>
-            <div className='ellipse rounded-full absolute top-[35%] left-[40%]'></div>
-            <div className='ellipse2 rounded-full absolute top-[-20%] left-[65%]'></div>
-            <img src={waves} alt="waves" className="object-cover object-bottom w-screen h-auto" />
-        </div>
-        <div className='flex h-screen w-full absolute top-0 left-0 z-1'>
-            <div className='flex flex-col h-full w-[60vw] justify-center ml-32'>
-                <p className="p-4 z-30  xl:text-6xl md:text-5xl text-gray-800" style={{ fontFamily: 'Literata, serif', fontWeight: 800}}>Welcome to
-                    <span style={{ fontFamily: 'Literata, serif', color: '#60359E', fontWeight: 800 }}> LingoVerse
-                    </span>
-                    <span style={{ fontFamily: 'Literata, serif', fontWeight: 800 }}>,
-                    </span>
-                </p>
-                <p className=" p-4 z-30 md:text-2xl xl:text-3xl text-gray-800" style={{ fontFamily: 'Literata, serif', fontWeight: 800}}>your gateway to immersive language learning!
-                </p>
-                <p className="p-4 z-30 md:text-xl xl:text-2xl" style={{ fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Whether you're a beginner or aiming for fluency,<br /> LinguaVerse offers a unique blend of engaging<br /> features to guide you towards mastery.
-                </p>
-                <p className=" p-4 z-40 md:text-4xl xl:text-5xl ml-64 my-4" style={{ fontFamily: 'Literata, serif', fontWeight: 1000, color: '#3A3148' }} ref={el} />
-                <span className="p-4 z-40 ml-48">
-                    <button {...shimmerComponent.component.props} onClick={handleClick}>
-                        {shimmerComponent.component.children}
-                    </button>
-                </span>
+            <div className="h-screen w-full relative">
+                <div className='h-screen flex justify-end items-end relative z-0'>
+                    <div className='ellipse rounded-full absolute -top-8 -left-8'></div>
+                    <div className='ellipse rounded-full absolute top-[35%] left-[40%]'></div>
+                    <div className='ellipse2 rounded-full absolute top-[-20%] left-[65%]'></div>
+                    <img src={waves} alt="waves" className="object-cover object-bottom w-screen h-auto" />
+                </div>
+                <div className='flex h-screen w-full absolute top-0 left-0 z-1'>
+                    <div className='flex flex-col h-full w-[60vw] justify-center ml-32'>
+                        <p className="p-4 z-30  xl:text-6xl md:text-5xl text-gray-800" style={{ fontFamily: 'Literata, serif', fontWeight: 800 }}>Welcome to
+                            <span style={{ fontFamily: 'Literata, serif', color: '#60359E', fontWeight: 800 }}> LingoVerse
+                            </span>
+                            <span style={{ fontFamily: 'Literata, serif', fontWeight: 800 }}>,
+                            </span>
+                        </p>
+                        <p className=" p-4 z-30 md:text-2xl xl:text-3xl text-gray-800" style={{ fontFamily: 'Literata, serif', fontWeight: 800 }}>your gateway to immersive language learning!
+                        </p>
+                        <p className="p-4 z-30 md:text-xl xl:text-2xl" style={{ fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Whether you're a beginner or aiming for fluency,<br /> LinguaVerse offers a unique blend of engaging<br /> features to guide you towards mastery.
+                        </p>
+                        <p className=" p-4 z-40 md:text-4xl xl:text-5xl ml-64 my-4" style={{ fontFamily: 'Literata, serif', fontWeight: 1000, color: '#3A3148' }} ref={el} />
+                        <span className="p-4 z-40 ml-48">
+                            <button {...shimmerComponent.component.props} onClick={handleClick}>
+                                {shimmerComponent.component.children}
+                            </button>
+                        </span>
+                    </div>
+                    <div className='w-[40vw] flex justify-center items-center mr-4'>
+                        <img src={study} alt="study" className="object-cover object-bottom z-20 w-[30vw]" />
+                    </div>
+                </div>
             </div>
-            <div className='w-[40vw] flex justify-center items-center mr-4'>
-                <img src={study} alt="study" className="object-cover object-bottom z-20 w-[30vw]" />
-            </div>
-        </div>
-    </div>
 
 
             <div className="">
                 <div className="custom-gradient h-screen flex flex-col justify-center items-center w-full relative" style={{ height: '900px' }}>
                     <div className='flex'>
-                    <div>
-                    <p className="p-4 z-30 text-5xl" style={{ fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Unlock Your Linguistic Potential</p>
-                    <p className="p-4 z-30 text-2xl" style={{ fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Explore a comprehensive language learning <br /> experience with multiple tiers of quizzes. Progress <br /> through each stage by  advancing towards mastery <br /> through immersive audio-based quizzes.</p>
-                    </div>
-                    <img src={students} alt="study" className="object-cover object-bottom z-20 overflow-hidden" width="600" height="376" />
+                        <div>
+                            <p className="p-4 z-30 text-5xl" style={{ fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Unlock Your Linguistic Potential</p>
+                            <p className="p-4 z-30 text-2xl" style={{ fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Explore a comprehensive language learning <br /> experience with multiple tiers of quizzes. Progress <br /> through each stage by  advancing towards mastery <br /> through immersive audio-based quizzes.</p>
+                        </div>
+                        <img src={students} alt="study" className="object-cover object-bottom z-20 overflow-hidden" width="600" height="376" />
                     </div>
                     <div className='flex'>
-                        <div style={{width:"600px" ,height:"406px"}}>
-                    <img src={video_call} alt="study" className="object-cover object-bottom z-20 mr-8" width="400" height="276" />
+                        <div style={{ width: "600px", height: "406px" }}>
+                            <img src={video_call} alt="study" className="object-cover object-bottom z-20 mr-8" width="400" height="276" />
                         </div>
-                    <div >
-                    <p className="p-4 z-30 text-5xl" style={{ top: 500, left: 650, fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Connect and Collaborate
-                    </p>
-                    <p className="p-4 z-30 text-2xl" style={{ top: 575, left: 650, fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Engage in video calls and language-specific chat <br />  rooms. Foster community-based learning, sharing <br />  insights and experiences with fellow language <br />  enthusiasts.
-                    </p>
+                        <div >
+                            <p className="p-4 z-30 text-5xl" style={{ top: 500, left: 650, fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Connect and Collaborate
+                            </p>
+                            <p className="p-4 z-30 text-2xl" style={{ top: 575, left: 650, fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Engage in video calls and language-specific chat <br />  rooms. Foster community-based learning, sharing <br />  insights and experiences with fellow language <br />  enthusiasts.
+                            </p>
+                        </div>
                     </div>
-                    </div>
-            </div>
+                </div>
             </div>
             <div className="">
                 <div className="h-screen flex flex-col justify-center items-center w-full relative" style={{ height: '900px' }}>
-                <div className='ellipse rounded-full z-0 absolute top-[30%] right-[0%]'></div>
-                <div className='ellipse3 rounded-full z-0 absolute top-[-10%] left-[0%]'></div>
+                    <div className='ellipse rounded-full z-0 absolute top-[30%] right-[0%]'></div>
+                    <div className='ellipse3 rounded-full z-0 absolute top-[-10%] left-[0%]'></div>
                     <div className='flex relative z-1'>
-                    <div>
-                    <p className="p-4 z-30 text-5xl" style={{ fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Expand Your Horizon</p>
-                    <p className="p-4 z-30 text-2xl" style={{ fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Discover curated recommendations for movies, <br /> books, and audio songs. Immerse yourself in <br />  authentic cultural content while enhancing <br /> language proficiency.</p>
-                    </div>
-                    <img src={girl_music} alt="study" className="object-cover object-bottom z-20 overflow-hidden" width="600" height="376" />
-                    </div>
-                    <div className='flex relative z-1'>
-                        <div style={{width:"600px" ,height:"540px"}}>
-                    <img src={Question} alt="study" className="object-cover object-bottom z-20 mr-8" width="400" height="276" />
+                        <div>
+                            <p className="p-4 z-30 text-5xl" style={{ fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Expand Your Horizon</p>
+                            <p className="p-4 z-30 text-2xl" style={{ fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Discover curated recommendations for movies, <br /> books, and audio songs. Immerse yourself in <br />  authentic cultural content while enhancing <br /> language proficiency.</p>
                         </div>
-                    <div >
-                    <p className="p-4 z-30 text-5xl" style={{ top: 500, left: 650, fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Refine your skills
-                    </p>
-                    <p className="p-4 z-30 text-2xl" style={{ top: 575, left: 650, fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Receive detailed feedback on quiz performance.<br /> Understand and overcome mistakes with <br /> explanations for incorrect answers at each level.
-                    </p>
+                        <img src={girl_music} alt="study" className="object-cover object-bottom z-20 overflow-hidden" width="600" height="376" />
                     </div>
+                    <div className='flex relative z-1'>
+                        <div style={{ width: "600px", height: "540px" }}>
+                            <img src={Question} alt="study" className="object-cover object-bottom z-20 mr-8" width="400" height="276" />
+                        </div>
+                        <div >
+                            <p className="p-4 z-30 text-5xl" style={{ top: 500, left: 650, fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148' }}>Refine your skills
+                            </p>
+                            <p className="p-4 z-30 text-2xl" style={{ top: 575, left: 650, fontFamily: 'Literata, serif', fontWeight: 500, color: '#7D7D7D' }}>Receive detailed feedback on quiz performance.<br /> Understand and overcome mistakes with <br /> explanations for incorrect answers at each level.
+                            </p>
+                        </div>
                     </div>
-            </div>
+                </div>
             </div>
             {/* <div className="relative">
                 <div className="h-screen flex justify-end items-end w-full relative" style={{ height: '940px' }}>
@@ -161,18 +161,18 @@ const Homepage = () => {
                     </span>
                 </div>
             </div> */}
-        <div className='custom-gradient2 relative h-screen flex justify-center items-center'>
-            <div className='  flex justify-center items-center'>
-                <span className="absolute xl:top-[20%] xl:left-[43%] md:top-[18%] md:left-[43%] p-4 z-30 text-5xl  text-center" style={{ fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148', paddingTop: '5%' }}>Languages <br /> we <br />offer</span>
-                <img src={man} alt="study" className="absolute xl:top-[50%] xl:left-[45%] md:top-[45%] md:left-[45%] transform-translate object-cover object-bottom z-40" width={225} height={200}/>
-                <img src={french} alt="study" className="absolute xl:top-[45%] xl:left-[20%] md:top-[45%] md:left-[15%] object-cover object-bottom z-20" />
-                <img src={english} alt="study" className="absolute xl:top-[15%] xl:left-[20%] md:top-[15%] md:left-[15%] object-cover object-bottom z-20" />
-                <img src={hindi} alt="study" className="absolute xl:top-[2%] xl:left-[45%] md:top-[2%] md:left-[45%] object-cover object-bottom z-20" />
-                <img src={spanish} alt="study" className="absolute xl:top-[15%] xl:left-[70%] md:top-[15%] md:left-[75%] object-cover object-bottom z-20" />
-                <img src={japanese} alt="study" className="absolute xl:top-[45%] xl:left-[70%] md:top-[45%] md:left-[75%] object-cover object-bottom z-20 border border-black rounded border-solid" />
+            <div className='custom-gradient2 relative h-screen flex justify-center items-center'>
+                <div className='  flex justify-center items-center'>
+                    <span className="absolute xl:top-[20%] xl:left-[43%] md:top-[18%] md:left-[43%] p-4 z-30 text-5xl  text-center" style={{ fontFamily: 'Literata, serif', fontWeight: 700, color: '#3A3148', paddingTop: '5%' }}>Languages <br /> we <br />offer</span>
+                    <img src={man} alt="study" className="absolute xl:top-[50%] xl:left-[45%] md:top-[45%] md:left-[45%] transform-translate object-cover object-bottom z-40" width={225} height={200} />
+                    <img src={french} alt="study" className="absolute xl:top-[45%] xl:left-[20%] md:top-[45%] md:left-[15%] object-cover object-bottom z-20" />
+                    <img src={english} alt="study" className="absolute xl:top-[15%] xl:left-[20%] md:top-[15%] md:left-[15%] object-cover object-bottom z-20" />
+                    <img src={hindi} alt="study" className="absolute xl:top-[2%] xl:left-[45%] md:top-[2%] md:left-[45%] object-cover object-bottom z-20" />
+                    <img src={spanish} alt="study" className="absolute xl:top-[15%] xl:left-[70%] md:top-[15%] md:left-[75%] object-cover object-bottom z-20" />
+                    <img src={japanese} alt="study" className="absolute xl:top-[45%] xl:left-[70%] md:top-[45%] md:left-[75%] object-cover object-bottom z-20 border border-black rounded border-solid" />
+                </div>
+                <img src={scrollup} alt="scrollup" className='animate-bounce cursor-pointer absolute bottom-8 right-8' onClick={scrollUp} />
             </div>
-            <img src={scrollup} alt="scrollup" className='animate-bounce cursor-pointer absolute bottom-8 right-8'onClick={scrollUp}/>
-        </div>
         </>
     );
 }
