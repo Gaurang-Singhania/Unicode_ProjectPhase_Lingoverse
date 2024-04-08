@@ -6,6 +6,9 @@ from googletrans import Translator
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import *
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 # Create your views here.
 
@@ -48,9 +51,11 @@ def get_translated_questions(random_questions):
 
 
 class createQuiz(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         level = request.data.get('level')
-        id = 7 #to be taken from the requesting user
+        id = request.user.id #to be taken from the requesting user
         random_questions = get_random_questions(level)
 
         questions = get_translated_questions(random_questions)
