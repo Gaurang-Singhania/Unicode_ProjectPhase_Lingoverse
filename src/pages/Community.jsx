@@ -1,17 +1,11 @@
 import React from 'react';
 import illustration from "../assets/landingpage/Business agreement.svg";
 import plus from "../assets/landingpage/Plus.svg";
-import arrow from "../assets/landingpage/Arrow 3.svg";
 import cross from "../assets/landingpage/Cross.svg";
 import Modal from 'react-modal';
+import Sidebar from '../components/Sidebar';
 
-const communities = [
-    'General language learning',
-    'Business language learning',
-    'Tourism language learning',
-    'Academic language learning',
-    'Cultural language learning',
-  ];
+
 
 const Community = () => {
     const customStyles = {
@@ -46,20 +40,8 @@ const Community = () => {
 
     return (
         <div className="h-screen w-full flex justify-between" style={{ fontFamily: 'Literata, serif' }}>
-            <div className='relative bg-[#F8F8FF]' style={{ width: '25%', height: '100vh' }}>
-                <img src={arrow} alt="back" className='absolute top-4 left-4 cursor-pointer'/>
-                <div className='text-4xl font-extrabold mt-10 text-[#60359E] text-center'>Spanish</div>
-                <div className='text-2xl transform translate-x-1/2 font-extrabold mt-10 text-[#3A3148] text-center border-b-2 border-[#3A3148] w-1/2'>Communities</div>
-                <div className='text-center mt-8'>
-                    {
-                        communities.map(c=>{
-                            return(
-                                <p className='my-6 text-[#7D7D7D] text-2xl font-medium cursor-pointer'>{c}</p>
-                            )
-                        })
-                    }
-                </div>
-            </div>
+            <Sidebar/>
+            
             <div className='relative bg-[#F6FFF6] flex flex-col justify-center items-center' style={{ width: '75%', height: '100vh' }}>
                 <img src={illustration} alt="illustration"/>
                 <p className='text-3xl font-bold text-[#7D7D7D]'>Connect and learn...</p>

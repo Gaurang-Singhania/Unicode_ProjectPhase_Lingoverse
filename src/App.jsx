@@ -8,6 +8,7 @@ import LanguageSelect from './pages/LanguageSelect';
 import Community from './pages/Community';
 import Language from './pages/Language';
 import Translate from './pages/Translate';
+import Chat from './pages/Chat';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/languageexerciseselection" element={<Language />}/>
         <Route path="/community" element={<Community />}/>
         <Route path="/languagetranslate" element={<Translate />}/>
+        <Route path="/chat" element={<Chat />}/>
       </Routes>
     </BrowserRouter>
     </>
