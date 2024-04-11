@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import Navbar from './Navbar';
-import CardLayout from './CardLayout';
+import CardLayout from '../components/CardLayout';
 import england from '../assets/landingpage/English.png';
 import france from '../assets/landingpage/French.png';
 import india from '../assets/landingpage/Hindi.png';
@@ -20,13 +19,14 @@ function LanguageSelect() {
     backgroundSize: 'cover',
     backgroundRepeat: 'repeat',
     backgroundPosition: 'center',
-    '@media (min-width: 1536px)': {
-      width: '100vw',  
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'repeat',
-    },
+    minHeight: '100vh',
+    minWidth: '100vw',
   };
+  const buttonHover = "transition-transform hover:scale-110 cursor-pointer hover:bg-slate-100";
+  
+  const handleLanguage = (lang) => {
+    console.log(lang);
+  }
 
   return (
     <>
@@ -37,20 +37,20 @@ function LanguageSelect() {
           Pick a language to start learning....
         </p>
         
-        <div className='container mt-10 mb-10 grid gap-y-7 md:grid-cols-2 justify-items-center mx-2 px-20'>
-          <CardLayout language="English" countryImage={england} />
-          <CardLayout language="French" countryImage={france} />
-          <CardLayout language="Hindi" countryImage={india} />
-          <CardLayout language="Japanese" countryImage={japan} />
+        <div className='container mt-10 mb-10 grid gap-y-14 md:grid-cols-2 justify-items-center mx-2 px-20'>
+          <div onClick={() => handleLanguage('English')}><CardLayout language="English" flag={england} /></div>
+          <div onClick={() => handleLanguage('French')}><CardLayout language="French" flag={france}/></div>
+          <div onClick={() => handleLanguage('Hindi')}><CardLayout language="Hindi" flag={india} /></div>
+          <div onClick={() => handleLanguage('Japanese')}><CardLayout language="Japanese" flag={japan}/></div>
           
         </div> 
-        <div className='self-center mb-10'>
-        <CardLayout language="Spanish" countryImage={spain} /> 
+        <div className='self-center mb-10' onClick={() => handleLanguage('Spanish')}>
+          <CardLayout language="Spanish" flag={spain} /> 
         </div>
 
-        <div className='shadow-md self-center mt-10 rounded-md bg-white'>
-          <button onClick={handleClick} className="rounded-md border-2 border-gray-300 py-4 px-8">
-            <p className='text-[#60359E] text-3xl font-bold rounded-lg ' style={{ fontFamily: 'Literata, serif', fontWeight: 800}}>Next</p>
+        <div className={`shadow-md self-center mt-10 rounded-md bg-white ${buttonHover}`}>
+          <button onClick={handleClick} className="rounded-md border-2 border-gray-300 py-4 px-8 hover:border-black">
+            <p className='text-[#60359E] text-3xl font-bold rounded-lg w-22' style={{ fontFamily: 'Literata, serif', fontWeight: 800}}>Next</p>
           </button>
         </div>
       </div>   
