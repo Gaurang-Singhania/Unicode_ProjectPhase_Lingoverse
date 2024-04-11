@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import component from "../assets/landingpage/Component 4.svg";
 
-import { FaCheck, FaTimes } from "react-icons/fa";
-
 function Quiz() {
   const [score, setScore] = useState(0);
   const [isScoreUpdated, setIsScoreUpdated] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState("");
-  const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
   const [questionBG, setQuestionBG] = useState({
     option1: "bg-white",
     option2: "bg-white",
@@ -44,10 +39,6 @@ function Quiz() {
       setScore(score + 1);
       setIsScoreUpdated(true);
     }
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
   };
 
   return (
