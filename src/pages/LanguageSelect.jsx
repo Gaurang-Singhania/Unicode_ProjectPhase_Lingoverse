@@ -22,7 +22,7 @@ function LanguageSelect() {
     minHeight: '100vh',
     minWidth: '100vw',
   };
-  const buttonHover = "transition-transform hover:scale-110 cursor-pointer hover:bg-slate-100";
+  const buttonHover = "transition-transform hover:scale-110 cursor-pointer hover:bg-slate-100 hover:border-black";
   
   const handleLanguage = (lang) => {
     console.log(lang);
@@ -49,8 +49,8 @@ function LanguageSelect() {
         </div>
 
         <div className={`shadow-md self-center mt-10 rounded-md bg-white ${buttonHover}`}>
-          <button onClick={handleClick} className="rounded-md border-2 border-gray-300 py-4 px-8 hover:border-black">
-            <p className='text-[#60359E] text-3xl font-bold rounded-lg w-22' style={{ fontFamily: 'Literata, serif', fontWeight: 800}}>Next</p>
+          <button onClick={handleClick} className="rounded-md border-2 border-gray-300 py-4 px-8 ho">
+            <p className='text-[#60359E] text-3xl font-bold rounded-lg w-18' style={{ fontFamily: 'Literata, serif', fontWeight: 800}}>Next</p>
           </button>
         </div>
       </div>   
