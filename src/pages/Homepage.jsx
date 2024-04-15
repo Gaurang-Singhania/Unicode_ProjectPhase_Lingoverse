@@ -43,21 +43,25 @@ const Homepage = () => {
         },
     };
 
-    const el = useRef(null); // Create a reference to store the DOM element
+    const el = useRef(null); 
 
     useEffect(() => {
-        if (el.current) {
-            const typed = new Typed(el.current, {
-                strings: ['Hello', 'Hola', 'Bonjour', 'Hallo', 'Ciao'],
-                typeSpeed: 70,
-                showCursor: false,
-            });
-
-            return () => {
-                typed.destroy(); // Destroy Typed instance during cleanup to stop animation
-            };
-        }
+        const timeout = setTimeout(() => {
+            if (el.current) {
+                const typed = new Typed(el.current, {
+                    strings: ['Hello', 'Hola', 'Bonjour', 'Hallo', 'Ciao'],
+                    typeSpeed: 70,
+                    showCursor: false,
+                });
+    
+                return () => {
+                    typed.destroy(); 
+                };
+            }
+        }, 1500);
+        return () => clearTimeout(timeout);
     }, [el]);
+    
     const navigate = useNavigate();
     const handleClick = (e) => {
         navigate('/login')
@@ -287,7 +291,16 @@ const Homepage = () => {
                     <img src={man} alt="study" className="absolute xl:top-[50%] xl:left-[45%] md:top-[45%] md:left-[45%] transform-translate object-cover object-bottom z-40" width={225} height={200} />
                     <img src={french} alt="study" className="absolute xl:top-[45%] xl:left-[20%] md:top-[45%] md:left-[15%] object-cover object-bottom z-20" />
                     <img src={english} alt="study" className="absolute xl:top-[15%] xl:left-[20%] md:top-[15%] md:left-[15%] object-cover object-bottom z-20" />
+                    <motion.div 
+                         style={{ width: "600px", height: "540px" }}
+                         initial={"offscreen"}
+                         whileInView={"onscreen"}
+                         viewport={{ once: true, amount: 0.5 }}
+                         transition={{ staggerChildren: 0.5 ,delayChildren: 1 }}
+                         variants={leftAnimate}
+                         >
                     <img src={hindi} alt="study" className="absolute xl:top-[2%] xl:left-[45%] md:top-[2%] md:left-[45%] object-cover object-bottom z-20" />
+                    </motion.div>
                     <img src={spanish} alt="study" className="absolute xl:top-[15%] xl:left-[70%] md:top-[15%] md:left-[75%] object-cover object-bottom z-20" />
                     <img src={japanese} alt="study" className="absolute xl:top-[45%] xl:left-[70%] md:top-[45%] md:left-[75%] object-cover object-bottom z-20 border border-black rounded border-solid" />
                 </div>

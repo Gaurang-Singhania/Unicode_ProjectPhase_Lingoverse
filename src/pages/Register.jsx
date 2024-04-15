@@ -26,7 +26,7 @@ const Register = () => {
 
   return (
     <>
-    <Navbar/>
+    {/* <Navbar/> */}
     <div className="h-screen w-screen flex justify-center items-center relative bg-[#FEF5F2]"style={{ fontFamily: 'Literata, serif'}}>
         
       <img src={waves} alt="waves" className="h-auto w-full z-0 flex justify-end items-end absolute bottom-0 left-0 "/>
