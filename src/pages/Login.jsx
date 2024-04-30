@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import waves from "../assets/landingpage/Component_1.svg";
 import user from "../assets/landingpage/User3.svg";
 import lock from "../assets/landingpage/Lock.svg";
 import cross from "../assets/landingpage/Cross.svg";
 import logo from "../assets/landingpage/Lingoverse.png";
-import Navbar from "./Navbar";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -14,10 +12,13 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate("/languageselect");
   };
-  const handleSignup = (e) => {
+
+  const handleSignup = () => {
     navigate("/register");
   };
+
   const crossClick = () => {
     navigate("/");
   };
@@ -28,19 +29,16 @@ const Login = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       <div
         className="h-screen w-screen flex justify-center items-center relative bg-white"
         style={{ fontFamily: "Literata, serif" }}
       >
         <div className="ocean">
-          <div class="wave"></div>
-          <div class="wave wave2"></div>
+          <div className="wave"></div>
+          <div className="wave wave2"></div>
         </div>
         <div className="ellipse0 opacity-75 rounded-full absolute -top-8 -left-8 z-0"></div>
         <div className="ellipse0 rounded-full opacity-75 absolute top-[40%] left-[60%] z-0"></div>
-        {/* <div className='ellipse2 rounded-full absolute top-[-20%] left-[65%]'></div> */}
-        {/* <img src={waves} alt="waves" className="h-auto w-full z-0 flex justify-end items-end absolute bottom-0 left-0 " /> */}
 
         <div className=" w-screen h-screen top-0 left-0 z-1 flex justify-center items-center ">
           <div className="relative bg-[##ffffff6b] backdrop-blur-sm z-1 border-2 border-[#ededff] shadow-lg shadow-[rgba(0,0,0,0.25)] rounded-2xl py-16 px-16">
@@ -48,7 +46,7 @@ const Login = () => {
               <img src={cross} alt="waves" className="absolute top-4 right-4" />
             </span>
             <div className="flex">
-              <img src={logo} className="h-24 mr-8 mb-4" />
+              <img src={logo} className="h-24 mr-8 mb-4" alt="logo" />
               <h1
                 className="text-center blur-none text-4xl mt-4 mb-8 font-extrabold text-[#60359E]"
                 style={{ fontFamily: "Literata, serif" }}
@@ -66,7 +64,7 @@ const Login = () => {
                 required
               />
               <span className="border-b-2 border-slate-400 pb-2">
-                <img src={user} />
+                <img src={user} alt="user" />
               </span>
             </div>
             <div className="flex mt-8">
@@ -79,32 +77,17 @@ const Login = () => {
                 required
               />
               <span className="border-b-2 border-slate-400 pb-2">
-                <img src={lock} />
+                <img src={lock} alt="lock" />
               </span>
             </div>
-
-            <div
-              className="text-center text-2xl font-extrabold text-[#60359E] bg-white py-2 px-4 mt-8 mb-8 rounded-lg shadow-lg shadow-[rgba(0,0,0,0.25)]  hover:bg-[#60359E] hover:text-white cursor-pointer"
-              style={{
-                fontFamily: "Literata, serif",
-                border: "1px solid #CFC4EC",
-              }}
-            >
+            <div className="text-center text-2xl font-extrabold text-[#60359E] bg-white py-2 px-4 mt-8 mb-8 rounded-lg shadow-lg shadow-[rgba(0,0,0,0.25)]  hover:bg-[#60359E] hover:text-white cursor-pointer" style={{ fontFamily: "Literata, serif", border: "1px solid #CFC4EC" }}>
               <button className="" type="submit" onClick={handleSubmit}>
                 Log in
               </button>
             </div>
 
-            <span className="text-[#8f8f8f] font-medium text-xl">
-              Don't have an account?{" "}
-            </span>
-            <span
-              className="border-b-2 border-[#7D7D7D] text-[#7D7D7D] font-semibold text-xl cursor-pointer"
-              onClick={handleSignup}
-            >
-              {" "}
-              Sign up
-            </span>
+            <span className="text-[#8f8f8f] font-medium text-xl">Don't have an account? </span>
+            <span className="border-b-2 border-[#7D7D7D] text-[#7D7D7D] font-semibold text-xl cursor-pointer" onClick={handleSignup}>Sign up</span>
           </div>
         </div>
       </div>
