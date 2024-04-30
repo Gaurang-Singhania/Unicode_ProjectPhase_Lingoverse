@@ -1,19 +1,53 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import user from "../assets/landingpage/User3.svg";
 import lock from "../assets/landingpage/Lock.svg";
 import cross from "../assets/landingpage/Cross.svg";
 import logo from "../assets/landingpage/Lingoverse.png";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/languageselect");
+    try {
+      const response = await axios.post('http://localhost:8000/api/login', {
+        email: email,
+        password: password
+      });
+      
+      console.log("Response from server:", response.data); // Log response data
+    
+      // Assuming the backend sends back a success message
+      alert(response.data.message || "Login successful!"); // Displaying success message or a default message
+      
+      // Redirect to language selection page after successful login
+      navigate('/languageselect');
+    } catch (err) {
+      console.error("Error during login:", err);
+      if (err.response) {
+        console.log("Response data:", err.response.data); // Log response data
+        console.log("Response status:", err.response.status); // Log response status
+        console.log("Response headers:", err.response.headers); // Log response headers
+        
+        // Handle different error cases
+        if (err.response.status === 403) {
+          // User not found
+          alert("Incorrect email or password. Please try again.");
+        } else {
+          // Other errors
+          alert(err.response.data.message || "An error occurred during login."); // Displaying error message
+        }
+      } else {
+        alert("An error occurred during login. Please try again."); // Generic error message
+      }
+    }
   };
+  
+  
 
   const handleSignup = () => {
     navigate("/register");
@@ -56,10 +90,10 @@ const Login = () => {
             </div>
             <div className="flex">
               <input
-                value={username}
-                placeholder="Username"
+                value={email}
+                placeholder="Email"
                 type="text"
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 className="border-b-2 border-slate-400 w-64 py-2 bg-transparent outline-none font-medium text-slate-700"
                 required
               />
