@@ -1,5 +1,7 @@
 import React,{useState} from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Login from "./Login";
 import waves from "../assets/landingpage/Component_1.svg";
 import user from "../assets/landingpage/User3.svg";
 import lock from "../assets/landingpage/Lock.svg";
@@ -7,26 +9,57 @@ import Email from "../assets/landingpage/Email.svg";
 import cross from "../assets/landingpage/Cross.svg";
 import Navbar from "./Navbar";
 
-const Register = () => {
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [email, setEmail] = useState('')
+const Register = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [srclang, setSrclang] = useState('');
+  const [targlang, setTarglang] = useState('');
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-  }
-  const handleSignin=(e)=>{
-    navigate('/login')
-  }
-  const crossClick=()=>{
-    navigate('/')
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8000/api/register', {
+        email: email,
+        name: username,
+        password: password,
+        src_lang: srclang,
+        target_lang: targlang
+      });
+      
+      console.log("Response from server:", response.data); // Log response data
+  
+      // Assuming the backend sends back a success message
+      alert(response.data.message || "Registration successful!"); // Displaying success message or a default message
+      
+      // Optionally, you can redirect the user to a different page after successful registration
+      navigate('/Login');
+    } catch (err) {
+      console.error("Error during registration:", err);
+      if (err.response) {
+        console.log("Response data:", err.response.data); // Log response data
+        console.log("Response status:", err.response.status); // Log response status
+        console.log("Response headers:", err.response.headers); // Log response headers
+      }
+      setError(err.response.data.message || "An error occurred during registration."); // Displaying error message
+    }
+  };
+  
+
+  const handleSignin = () => {
+    navigate('/login');
+  };
+
+  const crossClick = () => {
+    navigate('/');
+  };
 
   return (
     <>
-    <Navbar/>
+    {/* <Navbar/> */}
     <div className="h-screen w-screen flex justify-center items-center relative bg-[#FEF5F2]"style={{ fontFamily: 'Literata, serif'}}>
         
       <img src={waves} alt="waves" className="h-auto w-full z-0 flex justify-end items-end absolute bottom-0 left-0 "/>
@@ -67,8 +100,35 @@ const Register = () => {
             <input
             value={password}
             placeholder="Password"
-            type="password"
+            type="text"
             onChange={(e) => setPassword(e.target.value)}
+            className="border-b-2 border-slate-400 w-64 py-2 bg-transparent outline-none font-medium text-slate-700"
+            required
+            />
+            <span className="border-b-2 border-slate-400 pb-2">
+                <img src={lock} className="w-8 h-8"/>
+            </span>
+        </div>
+            <div className="flex mt-8">
+            <input
+            value={srclang}
+            placeholder="sourceLanguage"
+            type="text"
+            onChange={(e) => setSrclang(e.target.value)}
+            className="border-b-2 border-slate-400 w-64 py-2 bg-transparent outline-none font-medium text-slate-700"
+            required
+            />
+            <span className="border-b-2 border-slate-400 pb-2">
+                <img src={lock} className="w-8 h-8"/>
+            </span>
+        </div>
+
+        <div className="flex mt-8">
+            <input
+            value={targlang}
+            placeholder="targetLanguage"
+            type="text"
+            onChange={(e) => setTarglang(e.target.value)}
             className="border-b-2 border-slate-400 w-64 py-2 bg-transparent outline-none font-medium text-slate-700"
             required
             />
