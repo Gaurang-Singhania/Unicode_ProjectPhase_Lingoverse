@@ -10,6 +10,8 @@ import Language from './pages/Language';
 import Translate from './pages/Translate';
 import Chat from './pages/Chat'; 
 import Quiz from './pages/quiz';
+import QuizImage from './pages/quiz-image';
+import QuizAudio from './pages/quiz-audio';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/languagetranslate" element={<Translate />}/>
         <Route path="/chat" element={<Chat />}/>
         <Route path="/quiz" element={<Quiz />}/>
+        <Route path="/quiz-img" element={<QuizImage />}/>
+        <Route path="/quiz-audio" element={<QuizAudio />}/>
       </Routes>
     </BrowserRouter>
     </>
