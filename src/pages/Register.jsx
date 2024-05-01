@@ -7,7 +7,8 @@ import user from "../assets/landingpage/User3.svg";
 import lock from "../assets/landingpage/Lock.svg";
 import Email from "../assets/landingpage/Email.svg";
 import cross from "../assets/landingpage/Cross.svg";
-import Navbar from "./Navbar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Register = () => {
@@ -33,12 +34,35 @@ const Register = () => {
       console.log("Response from server:", response.data); // Log response data
   
       // Assuming the backend sends back a success message
-      alert(response.data.message || "Registration successful!"); // Displaying success message or a default message
+      // alert(response.data.message || "Registration successful!"); // Displaying success message or a default message
+
+      toast.success('Registration successful!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        // transition: Bounce,
+        });
       
       // Optionally, you can redirect the user to a different page after successful registration
       navigate('/Login');
     } catch (err) {
       console.error("Error during registration:", err);
+      toast.error('Error during registration!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        // transition: Bounce,
+        });
       if (err.response) {
         console.log("Response data:", err.response.data); // Log response data
         console.log("Response status:", err.response.status); // Log response status
@@ -60,6 +84,19 @@ const Register = () => {
   return (
     <>
     {/* <Navbar/> */}
+    <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        // transition: Bounce
+        />
     <div className="h-screen w-screen flex justify-center items-center relative bg-[#FEF5F2]"style={{ fontFamily: 'Literata, serif'}}>
         
       <img src={waves} alt="waves" className="h-auto w-full z-0 flex justify-end items-end absolute bottom-0 left-0 "/>

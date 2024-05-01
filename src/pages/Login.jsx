@@ -5,6 +5,8 @@ import user from "../assets/landingpage/User3.svg";
 import lock from "../assets/landingpage/Lock.svg";
 import cross from "../assets/landingpage/Cross.svg";
 import logo from "../assets/landingpage/Lingoverse.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,40 +16,74 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/login', {
+      const response = await axios.post("http://localhost:8000/api/login", {
         email: email,
-        password: password
+        password: password,
       });
-      
+
       console.log("Response from server:", response.data); // Log response data
-    
+
       // Assuming the backend sends back a success message
-      alert(response.data.message || "Login successful!"); // Displaying success message or a default message
-      
+      // alert(response.data.message || "Login successful!"); // Displaying success message or a default message
+      toast.success('Login successful!!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        // transition: Bounce,
+        });
       // Redirect to language selection page after successful login
-      navigate('/languageselect');
-    } catch (err) {
+      navigate("/languageselect");
+    } 
+    catch (err) {
       console.error("Error during login:", err);
       if (err.response) {
         console.log("Response data:", err.response.data); // Log response data
         console.log("Response status:", err.response.status); // Log response status
         console.log("Response headers:", err.response.headers); // Log response headers
-        
+
         // Handle different error cases
         if (err.response.status === 403) {
           // User not found
-          alert("Incorrect email or password. Please try again.");
-        } else {
+          // alert("Incorrect email or password. Please try again.");
+          toast.error('Incorrect email or password!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            // transition: Bounce,
+            });
+        } 
+        else {
           // Other errors
           alert(err.response.data.message || "An error occurred during login."); // Displaying error message
         }
-      } else {
-        alert("An error occurred during login. Please try again."); // Generic error message
+      } 
+      else {
+        // alert("An error occurred during login. Please try again."); // Generic error message
+        // toast("An error occurred during login. Please try again.");
+        toast.error('User doesnt exist. Please Register First!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          // transition: Bounce,
+          });
       }
     }
   };
-  
-  
 
   const handleSignup = () => {
     navigate("/register");
@@ -57,12 +93,21 @@ const Login = () => {
     navigate("/");
   };
 
-
-
-  
-
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        // transition: Bounce
+        />
       <div
         className="h-screen w-screen flex justify-center items-center relative bg-white"
         style={{ fontFamily: "Literata, serif" }}
@@ -114,14 +159,27 @@ const Login = () => {
                 <img src={lock} alt="lock" />
               </span>
             </div>
-            <div className="text-center text-2xl font-extrabold text-[#60359E] bg-white py-2 px-4 mt-8 mb-8 rounded-lg shadow-lg shadow-[rgba(0,0,0,0.25)]  hover:bg-[#60359E] hover:text-white cursor-pointer" style={{ fontFamily: "Literata, serif", border: "1px solid #CFC4EC" }}>
+            <div
+              className="text-center text-2xl font-extrabold text-[#60359E] bg-white py-2 px-4 mt-8 mb-8 rounded-lg shadow-lg shadow-[rgba(0,0,0,0.25)]  hover:bg-[#60359E] hover:text-white cursor-pointer"
+              style={{
+                fontFamily: "Literata, serif",
+                border: "1px solid #CFC4EC",
+              }}
+            >
               <button className="" type="submit" onClick={handleSubmit}>
                 Log in
               </button>
             </div>
 
-            <span className="text-[#8f8f8f] font-medium text-xl">Don't have an account? </span>
-            <span className="border-b-2 border-[#7D7D7D] text-[#7D7D7D] font-semibold text-xl cursor-pointer" onClick={handleSignup}>Sign up</span>
+            <span className="text-[#8f8f8f] font-medium text-xl">
+              Don't have an account?{" "}
+            </span>
+            <span
+              className="border-b-2 border-[#7D7D7D] text-[#7D7D7D] font-semibold text-xl cursor-pointer"
+              onClick={handleSignup}
+            >
+              Sign up
+            </span>
           </div>
         </div>
       </div>

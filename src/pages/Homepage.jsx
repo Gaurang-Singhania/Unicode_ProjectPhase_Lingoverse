@@ -24,6 +24,8 @@ import { motion } from "framer-motion";
 // npm install react-router-dom
 // npm i react-modal
 // npm i framer-motion
+// npm install axios
+// npm install --save react-toastify
 
 const Homepage = () => {
   const shimmerComponent = {
