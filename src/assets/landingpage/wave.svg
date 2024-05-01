@@ -39,14 +39,14 @@
       <stop
          stop-color="#57BBC1"
          stop-opacity=".25"
-         offset="0"
+         offset="0.10094637"
          id="stop1"
-         style="stop-color:#dfceef;stop-opacity:0.25;" />
+         style="stop-color:#d5d3ed;stop-opacity:0.25;" />
       <stop
          stop-color="#015871"
          offset="1"
          id="stop2"
-         style="stop-color:#b78dff;stop-opacity:1;" />
+         style="stop-color:#c7beff;stop-opacity:1;" />
     </linearGradient>
   </defs>
   <path

@@ -25,7 +25,7 @@ const Login = () => {
 
       // Assuming the backend sends back a success message
       // alert(response.data.message || "Login successful!"); // Displaying success message or a default message
-      toast.success('Login successful!!', {
+      toast.success("Login successful!!", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -35,11 +35,10 @@ const Login = () => {
         progress: undefined,
         theme: "light",
         // transition: Bounce,
-        });
+      });
       // Redirect to language selection page after successful login
       navigate("/languageselect");
-    } 
-    catch (err) {
+    } catch (err) {
       console.error("Error during login:", err);
       if (err.response) {
         console.log("Response data:", err.response.data); // Log response data
@@ -50,7 +49,7 @@ const Login = () => {
         if (err.response.status === 403) {
           // User not found
           // alert("Incorrect email or password. Please try again.");
-          toast.error('Incorrect email or password!', {
+          toast.error("Incorrect email or password!", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -60,17 +59,15 @@ const Login = () => {
             progress: undefined,
             theme: "light",
             // transition: Bounce,
-            });
-        } 
-        else {
+          });
+        } else {
           // Other errors
           alert(err.response.data.message || "An error occurred during login."); // Displaying error message
         }
-      } 
-      else {
+      } else {
         // alert("An error occurred during login. Please try again."); // Generic error message
         // toast("An error occurred during login. Please try again.");
-        toast.error('User doesnt exist. Please Register First!', {
+        toast.error("User doesnt exist. Please Register First!", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -80,7 +77,7 @@ const Login = () => {
           progress: undefined,
           theme: "light",
           // transition: Bounce,
-          });
+        });
       }
     }
   };
@@ -107,7 +104,7 @@ const Login = () => {
         pauseOnHover
         theme="light"
         // transition: Bounce
-        />
+      />
       <div
         className="h-screen w-screen flex justify-center items-center relative bg-white"
         style={{ fontFamily: "Literata, serif" }}

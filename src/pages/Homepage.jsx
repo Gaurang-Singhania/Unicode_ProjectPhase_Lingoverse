@@ -70,7 +70,7 @@ const Homepage = () => {
       top: 0,
       behavior: "auto",
     });
-  console.log("scrolling up");
+    console.log("scrolling up");
   };
 
   const leftAnimate = {
@@ -485,20 +485,11 @@ const Homepage = () => {
             alt="study"
             className="absolute xl:top-[15%] xl:left-[20%] md:top-[15%] md:left-[15%] object-cover object-bottom z-20"
           />
-          <motion.div
-            style={{ width: "600px", height: "540px" }}
-            initial={"offscreen"}
-            whileInView={"onscreen"}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ staggerChildren: 0.5, delayChildren: 1 }}
-            variants={leftAnimate}
-          >
-            <img
-              src={hindi}
-              alt="study"
-              className="absolute xl:top-[2%] xl:left-[45%] md:top-[2%] md:left-[45%] object-cover object-bottom z-20"
-            />
-          </motion.div>
+          <img
+            src={hindi}
+            alt="study"
+            className="absolute xl:top-[2%] xl:left-[45%] md:top-[2%] md:left-[45%] object-cover object-bottom z-20"
+          />
           <img
             src={spanish}
             alt="study"
