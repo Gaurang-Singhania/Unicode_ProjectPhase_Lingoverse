@@ -5,9 +5,21 @@ from .models import Community, CommunityMembers
 from .permissions import *
 from .serializers import *
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+from django.http import JsonResponse
 # Create your views here.
 
 
+
+# class CommunityCreateAPIView(APIView):
+#     def post(self, request):
+#         serializer = CommunitySerializers(data=request.data)
+#         if serializer.is_valid():
+#             community = serializer.save()
+#             community.save()
+#             CommunityMembers.objects.create(user=request.user, community=community, is_Admin=True)
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CommunityCreateAPIView(APIView):
     def post(self, request):
@@ -15,9 +27,24 @@ class CommunityCreateAPIView(APIView):
         if serializer.is_valid():
             community = serializer.save()
             community.save()
+
+            # Create a chat room for the community
+            chat_room_serializer = ChatRoomSerializers(data={'name': community.name, 'community': community.pk})
+            if chat_room_serializer.is_valid():
+                chat_room = chat_room_serializer.save()
+            else:
+                # Rollback community creation if chat room creation fails
+                community.delete()
+                return Response(chat_room_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+            # Add the creator as a community member and mark as admin
             CommunityMembers.objects.create(user=request.user, community=community, is_Admin=True)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
     
 class CommunityJoinAPIView(APIView):
     
@@ -107,5 +134,39 @@ class DeleteCommunityAPIView(APIView):
 #             member.delete()
 #             return Response({"message": "User removed from the community"}, status=status.HTTP_204_NO_CONTENT)
 #         except CommunityMember.DoesNotExist:
-#             return Response({"message": "User not found in the community"}, status=status.HTTP_404_NOT_FOUND)      
+#             return Response({"message": "User not found in the community"}, status=status.HTTP_404_NOT_FOUND)  
+
+def chat_room_redirect(request):
+    # Here you need to determine the chat room ID based on your logic
+    user = request.user
+    try:
+        community_member = CommunityMembers.objects.get(user=user)
+        chat_room_id = community_member.community.id
+        return redirect('chat_room', chat_room_id=chat_room_id)
+    except CommunityMembers.DoesNotExist:
+        # If user is not a member of any community, you can handle it accordingly
+        return redirect('no_community_page')  
+
+
+
+
+def chat_room_view(request, chat_room_id):
+    chat_room = ChatRoom.objects.get(id=chat_room_id)
+    messages = ChatMessages.objects.filter(chat_room=chat_room).order_by('timestamp')
+    
+    messages_data = []
+    for message in messages:
+        messages_data.append({
+            'sender': message.sender.username,
+            'content': message.content,
+            'timestamp': message.timestamp.strftime('%Y-%m-%d %H:%M:%S')
+        })
+
+    chat_room_data = {
+        'name': chat_room.name,
+        'messages': messages_data
+    }
+
+    return JsonResponse(chat_room_data)
+
     

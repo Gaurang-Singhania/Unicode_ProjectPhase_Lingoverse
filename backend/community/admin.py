@@ -6,7 +6,13 @@ class CommunityAdmin(admin.ModelAdmin):
 
 class CommunityMemberAdmin(admin.ModelAdmin):
     list_display=['user','community','is_Admin']
+
+class ChatRoomAdmin(admin.ModelAdmin):
+    list_display= ['name','creation_date','community']   
 admin.site.register(Community,CommunityAdmin)
-admin.site.register(CommunityMembers,CommunityMemberAdmin)        
+admin.site.register(CommunityMembers,CommunityMemberAdmin)  
+admin.site.register(ChatRoom,ChatRoomAdmin )
+
+
 
 # Register your models here.

@@ -20,6 +20,19 @@ class CommunityMembers(models.Model):
     community=models.ForeignKey(Community,on_delete=models.CASCADE)
     is_Admin=models.BooleanField(default=False)
 
+class ChatRoom(models.Model):
+    name=models.CharField(max_length=100)
+    creation_date=models.DateTimeField(auto_now_add=True)
+    community=models.OneToOneField('Community',on_delete=models.CASCADE)
+    
+
+class ChatMessages(models.Model):
+    sender = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(User, related_name='received_messages', on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    chat_room = models.ForeignKey(ChatRoom, on_delete=models.CASCADE, default=None, null=True)    
+
     
 
     
