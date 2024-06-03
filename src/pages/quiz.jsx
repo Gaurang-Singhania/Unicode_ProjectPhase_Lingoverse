@@ -1,7 +1,62 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import component from "../assets/landingpage/Component 4.svg";
+import axios from 'axios';
+import loader from '../assets/loader.gif'
 
 function Quiz() {
+  const [data,setData]=useState(null)
+  const [options,setOptions]=useState([])
+  const [optionsImg,setOptionsImg]=useState([])
+  const [type,setType]=useState('')
+  const [correct,setCorrect]=useState('')
+  const [correctImg,setCorrectImg]=useState(null)
+  const [questionNumber,setQuestionNumber]=useState(1)
+  const [answerSelected,setAnswerSelected]=useState(false)
+  const fetchQuestion = async () => {
+    try {
+        const response = await axios.get('http://localhost:8000/question/', {
+            params: {
+                difficulty: 'easy', // Specify the desired difficulty
+                language: 'es' // Specify the desired language
+            }
+        });
+        console.log('Fetched question:', response);
+        setData(response.data)
+        const { alt1, alt2, alt3, correct_alt } = response.data;
+        setOptions([alt1, alt2, alt3, correct_alt]);
+        console.log('Options:', [alt1, alt2, alt3, correct_alt]);
+
+        const { url1, url2, url3, correct_url } = response.data;
+        setOptionsImg([url1, url2, url3, correct_url]);
+        console.log('OptionsImg:', [alt1, alt2, alt3, correct_alt]);
+
+        setType(response.data.type)
+        setCorrect(response.data.correct_alt)
+        setCorrectImg(response.data.correct_url)
+    } catch (error) {
+        console.error('Error fetching question:', error);
+    }
+};
+
+const populateDatabase = async () => {
+  console.log("populating")
+    try {
+        await axios.post('http://localhost:8000/populate/', {
+            difficulty: 'easy', // Specify the desired difficulty
+            language: 'es' // Specify the desired language
+        });
+        console.log('Database populated successfully');
+        fetchQuestion(); // Fetch a question after populating the database
+    } catch (error) {
+        console.error('Error populating database:', error);
+    }
+};
+
+// Automatically call populateDatabase when component mounts
+useEffect(() => {
+    populateDatabase();
+}, []);
+
   const [score, setScore] = useState(0);
   const [isScoreUpdated, setIsScoreUpdated] = useState(false);
   const [questionBG, setQuestionBG] = useState({
@@ -29,20 +84,41 @@ function Quiz() {
     "border-2 border-gray-200 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] bg-gray-200";
 
   const handleClick1 = (answer) => {
-    if (answer === "option2") {
-      setQuestionBG({ ...questionBG, [answer]: "bg-green-200 border-2 border-green-500" });
-    } else {
+    if (type=='word' && answer === correct) {
+      console.log(answer)
+      console.log(correct)
+      setQuestionBG({ ...questionBG, ["option4"]: "bg-green-200 border-2 border-green-500" });
+    }
+    else if (type=='image' && answer === correctImg) {
+      console.log(answer)
+      console.log(correctImg)
+      setQuestionBG({ ...questionBG, ["option4"]: "bg-green-200 border-2 border-green-500" });
+    }
+     else {
       setQuestionBG({ ...questionBG, [answer]: "bg-red-200 border-2 border-red-400" });
     }
 
-    if (answer === "option2" && !isScoreUpdated) {
+    if (answer === correct && !isScoreUpdated) {
       setScore(score + 1);
       setIsScoreUpdated(true);
     }
+    else if(answer==correctImg && !isScoreUpdated){
+      setScore(score + 1);
+      setIsScoreUpdated(true);
+    }
+    setAnswerSelected(true)
   };
-
+  const handleNext = () => {
+    if (answerSelected && questionNumber<=25) {
+      setQuestionNumber(questionNumber + 1);
+      fetchQuestion();
+      setAnswerSelected(false);
+      setIsScoreUpdated(false);
+    }
+  };
   return (
     <>
+    { data ?
       <div className="h-screen w-screen relative bg-[#ffffff]">
         <img
           src={component}
@@ -62,26 +138,45 @@ function Quiz() {
             className="text-center text-slate-600 text-2xl pb-4 min-[320px]:text-md sm:text-lg md:text-2xl"
             style={{ ...commonStyles }}
           >
-            Question: 1 /10
+            Question: {questionNumber}/25
           </p>
           <p
             className="text-center text-slate-800 text-3xl min-[320px]:text-2xl sm:text-2xl md:text-3xl"
             style={{ ...commonStyles }}
           >
-            Select the correct meaning- <span className="italic">man</span>
+            Select the correct meaning- <span className="italic">{data.word}</span>
           </p>
         </div>
 
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-5 mt-10 sm:gap-y-2 sm:mt-4 md:mt-10 md:grid-x-20">
-            <div
-              className={`${divQuestionAlign} ${questionBG.option1} ${questionBox} ${questionHover}`}
-              style={{ ...commonStyles }}
-              onClick={() => handleClick1("option1")}
-            >
-              mujer
-            </div>
-            <div
+            {type=='word'? options.map((opt,index)=>{
+              return(
+                <div
+                className={`${divQuestionAlign} ${questionBG.option1} ${questionBox} ${questionHover}`}
+                style={{ ...commonStyles }}
+                onClick={() => handleClick1(opt)}
+                key={index}
+              >
+                {opt}
+              </div>
+              )
+            }):
+            optionsImg.map((opt,index)=>{
+              return(
+                <div
+                className={`rounded-md h-46 w-60 px-10 m-10 flex justify-center items-center z-20 md:m-10 sm:m-4 min-[320px]:m-2 ${questionBG.option1} ${questionBox} ${questionHover}`}
+                style={{ ...commonStyles }}
+                onClick={() => handleClick1(opt)}
+                key={index}
+              >
+                <img src={opt}/>
+              </div>
+              )
+            })
+            }
+            
+            {/* <div
               className={`${divQuestionAlign} ${questionBG.option2} ${questionBox} ${questionHover}`}
               style={{ ...commonStyles }}
               onClick={() => handleClick1("option2")}
@@ -101,7 +196,7 @@ function Quiz() {
               onClick={() => handleClick1("option4")}
             >
               manzana
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -115,11 +210,22 @@ function Quiz() {
           <div
             className={`${divAlign} ${buttonHover} ${boxShadow1} text-right `}
             style={{ ...commonStyles }}
+            onClick={handleNext}
           >
             Next
           </div>
         </div>
       </div>
+      :
+      <div className="flex flex-col justify-center items-center h-screen">
+        <div>
+        <p className="text-4xl md:text-6xl m-4 text-[#60359E] font-semibold">Exploring new words for you... Hold on!</p>
+        </div>
+        <div className="m-2">
+        <img src={loader}/>
+        </div>
+      </div>
+}
     </>
   );
 }
