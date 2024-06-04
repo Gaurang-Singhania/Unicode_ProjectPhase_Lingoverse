@@ -12,6 +12,8 @@ function Quiz() {
   const [correctImg,setCorrectImg]=useState(null)
   const [questionNumber,setQuestionNumber]=useState(1)
   const [answerSelected,setAnswerSelected]=useState(false)
+  const [clicked,setClicked]=useState(false)
+
   const fetchQuestion = async () => {
     try {
         const response = await axios.get('http://localhost:8000/question/', {
@@ -26,7 +28,9 @@ function Quiz() {
         setOptions([alt1, alt2, alt3, correct_alt]);
         console.log('Options:', [alt1, alt2, alt3, correct_alt]);
 
+        console.log(response.status)
         const { url1, url2, url3, correct_url } = response.data;
+        
         setOptionsImg([url1, url2, url3, correct_url]);
         console.log('OptionsImg:', [alt1, alt2, alt3, correct_alt]);
 
@@ -75,7 +79,7 @@ useEffect(() => {
     fontWeight: 800
   };
   const questionHover =
-    "transition-transform hover:scale-110 cursor-pointer hover:border-black";
+    "transition-transform hover:scale-110 cursor-pointer hover:text-[#8943FF] hover:border-[#8943FF] hover:bg-[#F8F8FF]";
   const buttonHover =
     "transition-transform hover:scale-110 cursor-pointer hover:bg-white hover:border-slate-700";
   const questionBox =
@@ -83,19 +87,20 @@ useEffect(() => {
   const boxShadow1 =
     "border-2 border-gray-200 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] bg-gray-200";
 
-  const handleClick1 = (answer) => {
+  const handleClick1 = (answer,optionKey) => {
+    if(!clicked){
     if (type=='word' && answer === correct) {
       console.log(answer)
       console.log(correct)
-      setQuestionBG({ ...questionBG, ["option4"]: "bg-green-200 border-2 border-green-500" });
+      setQuestionBG({ ...questionBG, [optionKey]: "bg-green-200 border-2 border-green-500", });
     }
     else if (type=='image' && answer === correctImg) {
       console.log(answer)
       console.log(correctImg)
-      setQuestionBG({ ...questionBG, ["option4"]: "bg-green-200 border-2 border-green-500" });
+      setQuestionBG({ ...questionBG, [optionKey]: "bg-green-200 border-2 border-green-500", });
     }
      else {
-      setQuestionBG({ ...questionBG, [answer]: "bg-red-200 border-2 border-red-400" });
+      setQuestionBG({ ...questionBG, [optionKey]: "bg-red-200 border-2 border-red-400" });
     }
 
     if (answer === correct && !isScoreUpdated) {
@@ -107,15 +112,35 @@ useEffect(() => {
       setIsScoreUpdated(true);
     }
     setAnswerSelected(true)
+  }
+  setClicked(true)
   };
   const handleNext = () => {
-    if (answerSelected && questionNumber<=25) {
+    if (answerSelected && questionNumber<25) {
       setQuestionNumber(questionNumber + 1);
       fetchQuestion();
       setAnswerSelected(false);
       setIsScoreUpdated(false);
+      setQuestionBG({option1: "bg-white",
+      option2: "bg-white",
+      option3: "bg-white",
+      option4: "bg-white" });
+      setClicked(false)
     }
-  };
+  }
+  const handleSkip = () => {
+    if (questionNumber<25) {
+      setQuestionNumber(questionNumber + 1);
+      fetchQuestion();
+      setAnswerSelected(false);
+      setIsScoreUpdated(false);
+      setQuestionBG({option1: "bg-white",
+      option2: "bg-white",
+      option3: "bg-white",
+      option4: "bg-white"});
+      setClicked(false)
+    }
+  }
   return (
     <>
     { data ?
@@ -153,9 +178,9 @@ useEffect(() => {
             {type=='word'? options.map((opt,index)=>{
               return(
                 <div
-                className={`${divQuestionAlign} ${questionBG.option1} ${questionBox} ${questionHover}`}
+                className={`${divQuestionAlign} ${questionBG[`option${index + 1}`]} ${questionBox} ${questionHover}`}
                 style={{ ...commonStyles }}
-                onClick={() => handleClick1(opt)}
+                onClick={() => handleClick1(opt, `option${index + 1}`)}
                 key={index}
               >
                 {opt}
@@ -165,12 +190,12 @@ useEffect(() => {
             optionsImg.map((opt,index)=>{
               return(
                 <div
-                className={`rounded-md h-46 w-60 px-10 m-10 flex justify-center items-center z-20 md:m-10 sm:m-4 min-[320px]:m-2 ${questionBG.option1} ${questionBox} ${questionHover}`}
+                className={`rounded-md h-46 w-60 px-10 m-10 flex justify-center items-center z-20 md:m-10 sm:m-4 min-[320px]:m-2 ${questionBG[`option${index + 1}`]} ${questionBox} ${questionHover}`}
                 style={{ ...commonStyles }}
-                onClick={() => handleClick1(opt)}
+                onClick={() => handleClick1(opt, `option${index + 1}`)}
                 key={index}
               >
-                <img src={opt}/>
+                <img src={opt} className="h-42"/>
               </div>
               )
             })
@@ -204,6 +229,7 @@ useEffect(() => {
           <div
             className={`${divAlign} ${buttonHover} ${boxShadow1} text-left `}
             style={{ ...commonStyles }}
+            onClick={handleSkip}
           >
             Skip
           </div>
