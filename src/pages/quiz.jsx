@@ -13,6 +13,16 @@ function Quiz() {
   const [questionNumber,setQuestionNumber]=useState(1)
   const [answerSelected,setAnswerSelected]=useState(false)
   const [clicked,setClicked]=useState(false)
+  const [urlvalid,seturlvalid]=useState(true)
+
+  const validateImageUrls = async (url) => {
+    try {
+      const response = await fetch(url, { method: "HEAD" });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  };
 
   const fetchQuestion = async () => {
     try {
@@ -23,16 +33,45 @@ function Quiz() {
             }
         });
         console.log('Fetched question:', response);
+        const shuffleArray = (array) => {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+          return array;
+          };
+          
         setData(response.data)
         const { alt1, alt2, alt3, correct_alt } = response.data;
-        setOptions([alt1, alt2, alt3, correct_alt]);
+
+        const wordOptions = shuffleArray([alt1, alt2, alt3, correct_alt]);
+        setOptions(wordOptions);
+
+        // setOptions([alt1, alt2, alt3, correct_alt]);
         console.log('Options:', [alt1, alt2, alt3, correct_alt]);
 
         console.log(response.status)
         const { url1, url2, url3, correct_url } = response.data;
+
+        const areUrlsValid = await validateImageUrls(url1);
+      if (!areUrlsValid) {
+        seturlvalid(false)
+        console.warn("Invalid image URLs detected, fetching a new question...");
+        fetchQuestion(); // Recursively fetch a new question
+        seturlvalid(false)
+        return;
+      }
+      else{
+        seturlvalid(true)
+      }
+
         
-        setOptionsImg([url1, url2, url3, correct_url]);
-        console.log('OptionsImg:', [alt1, alt2, alt3, correct_alt]);
+      const imageOptions = shuffleArray([url1, url2, url3, correct_url]);
+      setOptionsImg(imageOptions);
+
+        // setOptionsImg([url1, url2, url3, correct_url]);
+        console.log('OptionsImg:', [url1, url2, url3, correct_url]);
+        seturlvalid(true)
 
         setType(response.data.type)
         setCorrect(response.data.correct_alt)
@@ -58,7 +97,8 @@ const populateDatabase = async () => {
 
 // Automatically call populateDatabase when component mounts
 useEffect(() => {
-    populateDatabase();
+    // populateDatabase();
+    fetchQuestion()
 }, []);
 
   const [score, setScore] = useState(0);
@@ -143,8 +183,8 @@ useEffect(() => {
   }
   return (
     <>
-    { data ?
-      <div className="h-screen w-screen relative bg-[#ffffff]">
+    { urlvalid && data ?
+      <div className="min-h-[100vh] w-screen relative bg-[#ffffff]">
         <img
           src={component}
           alt="component"
