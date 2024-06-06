@@ -7,13 +7,8 @@ const communities = [
   'Tourism language learning',
   'Academic language learning',
   'Cultural language learning',
-  'Cultural language learning',
-  'General language learning',
-  'Business language learning',
-  'Tourism language learning',
-  'Academic language learning',
-  'Cultural language learning',
-];
+  'Technical language learning',
+]; 
 
 const Checkbox = ({ label }) => {
   const [checked, setChecked] = useState(false);
