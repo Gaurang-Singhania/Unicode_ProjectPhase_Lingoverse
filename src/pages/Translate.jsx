@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../style.css';
 import arrow from '../assets/landingpage/Arrows.svg';
 import bg from '../assets/landingpage/bg_languagetranslate.svg';
@@ -9,11 +10,11 @@ import hindi from '../assets/landingpage/Hindi.png';
 import japanese from '../assets/landingpage/Japanese.png';
 
 const flags = [
-    { id: 1, name: 'English', image: english },
-    { id: 2, name: 'Spanish', image: spanish },
-    { id: 3, name: 'French', image: french },
-    { id: 4, name: 'Hindi', image: hindi },
-    { id: 5, name: 'Japanese', image: japanese }
+    { id: 1, name: 'English', code: 'en', image: english },
+    { id: 2, name: 'Spanish', code: 'es', image: spanish },
+    { id: 3, name: 'French', code: 'fr', image: french },
+    { id: 4, name: 'Hindi', code: 'hi', image: hindi },
+    { id: 5, name: 'Japanese', code: 'ja', image: japanese }
 ];
 
 const Translate = () => {
@@ -38,8 +39,23 @@ const Translate = () => {
         setInputValue2(event.target.value);
     };
 
-    const handleTranslate = () => {
-       
+    const handleTranslate = async () => {
+        // const apiKey = 'AIzaSyAw_zVcGq_e0xIKptyXRjIe5N4XfoEN8Wk'; 
+        const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
+        const sourceLang = flags[selectedOption1 - 1].code;
+        const targetLang = flags[selectedOption2 - 1].code;
+
+        try {
+            const response = await axios.post(url, {
+                q: inputValue1,
+                source: sourceLang,
+                target: targetLang,
+                format: 'text'
+            });
+            setInputValue2(response.data.data.translations[0].translatedText);
+        } catch (error) {
+            console.error('Error translating text:', error);
+        }
     };
 
     return (
