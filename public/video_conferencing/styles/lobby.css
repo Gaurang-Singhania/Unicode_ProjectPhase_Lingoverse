@@ -64,6 +64,9 @@
   border-radius: 5px;
   gap: 10px;
 }
+.form__field__wrapper button[type='submit']:hover {
+  background-color: #a873bb;
+}
 
 .form__field__wrapper button[type='submit'] svg {
   fill: #ede0e0;
@@ -86,5 +89,5 @@
 }
 
 .avatar__option__selected {
-  border: 3px solid #845695;
+  border: 3px solid #895d99;
 }

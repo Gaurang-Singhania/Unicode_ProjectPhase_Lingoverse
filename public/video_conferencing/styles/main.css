@@ -132,7 +132,7 @@ a {
 }
 
 #create__room__btn:hover {
-  background-color: #845695;
+  background-color: #895d99;
 }
 
 .nav--list {
@@ -152,7 +152,7 @@ a {
 #members__button:hover svg > path,
 #chat__button:hover svg,
 .nav__link:hover svg {
-  fill: #845695;
+  fill: #895d99;
 }
 
 .nav__link svg {
