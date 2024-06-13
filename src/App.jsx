@@ -12,6 +12,7 @@ import Chat from "./pages/Chat";
 import Quiz from "./pages/quiz";
 import QuizImage from "./pages/quiz-image";
 import QuizAudio from "./pages/quiz-audio";
+import Levels from "./pages/Levels";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/quiz-img" element={<QuizImage />} />
           <Route path="/quiz-audio" element={<QuizAudio />} />
+          <Route path="/levels" element={<Levels />} />
         </Routes>
       </BrowserRouter>
     </>
