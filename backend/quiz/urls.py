@@ -6,4 +6,5 @@ urlpatterns = [
     # path('questions', FetchQuestions.as_view(), name="get_ques"),
     path('question/', FetchQuestionAPIView.as_view(), name="get-question"),
     path('populate/', PopulateAPIView.as_view(), name="populate-quiz"),
+        path('auth-check/', AuthCheckView.as_view(), name="auth-check"),
 ]
