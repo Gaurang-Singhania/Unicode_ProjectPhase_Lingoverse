@@ -4,6 +4,8 @@ from rest_framework import status
 from .models import Community, CommunityMembers
 from .permissions import *
 from .serializers import *
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.http import JsonResponse
@@ -22,6 +24,8 @@ from django.http import JsonResponse
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CommunityCreateAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer = CommunitySerializers(data=request.data)
         if serializer.is_valid():
@@ -47,6 +51,8 @@ class CommunityCreateAPIView(APIView):
 
     
 class CommunityJoinAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     
     def post(self, request, community_id):
         try:
@@ -63,6 +69,8 @@ class CommunityJoinAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class LeaveCommunityAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     def post(self, request, community_id):
         user = request.user
         community = get_object_or_404(Community, id=community_id)
@@ -76,12 +84,16 @@ class LeaveCommunityAPIView(APIView):
         return Response({"message": "Left community successfully"}, status=status.HTTP_200_OK)
 
 class CommunityListAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         communities = Community.objects.all()
         serializer = CommunitySerializers(communities, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)  
     
 class RemoveMemberAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     
     def post(self, request, community_id, user_id):
         try:
@@ -102,6 +114,8 @@ class RemoveMemberAPIView(APIView):
             return Response({"message": "Membership not found"}, status=status.HTTP_404_NOT_FOUND)    
         
 class DeleteCommunityAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     
     def delete(self, request, community_id):
         try:
