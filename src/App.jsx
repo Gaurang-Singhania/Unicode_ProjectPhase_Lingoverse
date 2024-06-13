@@ -12,10 +12,15 @@ import Chat from "./pages/Chat";
 import Quiz from "./pages/quiz";
 import QuizImage from "./pages/quiz-image";
 import QuizAudio from "./pages/quiz-audio";
+<<<<<<< HEAD
+=======
+import Levels from "./pages/Levels";
+import { LanguageProvider } from "./context/Languagecontext";
+>>>>>>> 7d5968126ca4d5eef74192d0e47a64b55eb80f0a
 
 function App() {
   return (
-    <>
+    <LanguageProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -32,7 +37,7 @@ function App() {
           <Route path="/quiz-audio" element={<QuizAudio />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </LanguageProvider>
   );
 }
 

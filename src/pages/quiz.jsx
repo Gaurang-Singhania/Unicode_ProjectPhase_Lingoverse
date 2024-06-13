@@ -1,7 +1,130 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import component from "../assets/landingpage/Component 4.svg";
 
 function Quiz() {
+=======
+import React, { useState,useEffect, useContext } from "react";
+import component from "../assets/landingpage/Component 4.svg";
+import axios from 'axios';
+import loader from '../assets/loader.gif'
+import { LanguageContext } from '../context/Languagecontext';
+
+function Quiz() {
+  const [data,setData]=useState(null)
+  const [options,setOptions]=useState([])
+  const [optionsImg,setOptionsImg]=useState([])
+  const [type,setType]=useState('')
+  const [correct,setCorrect]=useState('')
+  const [correctImg,setCorrectImg]=useState(null)
+  const [questionNumber,setQuestionNumber]=useState(1)
+  const [answerSelected,setAnswerSelected]=useState(false)
+  const [clicked,setClicked]=useState(false)
+  const [urlvalid,seturlvalid]=useState(true)
+
+
+  const choosenLanguage = useContext(LanguageContext)
+  const v = choosenLanguage.selectedLanguage;
+  console.log(v)
+
+  const languages = [
+    { id: 1, name: 'English', code: 'en'},
+    { id: 2, name: 'Spanish', code: 'es' },
+    { id: 3, name: 'French', code: 'fr'},
+    { id: 4, name: 'Hindi', code: 'hi' },
+    { id: 5, name: 'Japanese', code: 'ja'}
+];
+
+ const quizLanguage = languages.find(lang => lang.name === v);
+ console.log(quizLanguage.code);
+
+  const validateImageUrls = async (url) => {
+    try {
+      const response = await fetch(url, { method: "HEAD" });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  };
+
+  const fetchQuestion = async () => {
+    try {
+        const response = await axios.get('http://localhost:8000/question/', {
+            params: {
+                difficulty: 'easy', // Specify the desired difficulty
+                language: quizLanguage.code // Specify the desired language
+            }
+        });
+        console.log('Fetched question:', response);
+        const shuffleArray = (array) => {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+          return array;
+          };
+          
+        setData(response.data)
+        const { alt1, alt2, alt3, correct_alt } = response.data;
+
+        const wordOptions = shuffleArray([alt1, alt2, alt3, correct_alt]);
+        setOptions(wordOptions);
+
+        // setOptions([alt1, alt2, alt3, correct_alt]);
+        console.log('Options:', [alt1, alt2, alt3, correct_alt]);
+
+        console.log(response.status)
+        const { url1, url2, url3, correct_url } = response.data;
+
+        const areUrlsValid = await validateImageUrls(url1);
+      if (!areUrlsValid) {
+        seturlvalid(false)
+        console.warn("Invalid image URLs detected, fetching a new question...");
+        fetchQuestion(); // Recursively fetch a new question
+        seturlvalid(false)
+        return;
+      }
+      else{
+        seturlvalid(true)
+      }
+
+        
+      const imageOptions = shuffleArray([url1, url2, url3, correct_url]);
+      setOptionsImg(imageOptions);
+
+        // setOptionsImg([url1, url2, url3, correct_url]);
+        console.log('OptionsImg:', [url1, url2, url3, correct_url]);
+        seturlvalid(true)
+
+        setType(response.data.type)
+        setCorrect(response.data.correct_alt)
+        setCorrectImg(response.data.correct_url)
+    } catch (error) {
+        console.error('Error fetching question:', error);
+    }
+};
+
+const populateDatabase = async () => {
+  console.log("populating")
+    try {
+        await axios.post('http://localhost:8000/populate/', {
+            difficulty: 'easy', // Specify the desired difficulty
+            language: quizLanguage.code // Specify the desired language
+        });
+        console.log('Database populated successfully');
+        fetchQuestion(); // Fetch a question after populating the database
+    } catch (error) {
+        console.error('Error populating database:', error);
+    }
+};
+
+// Automatically call populateDatabase when component mounts
+useEffect(() => {
+    // populateDatabase();
+    fetchQuestion()
+}, []);
+
+>>>>>>> 7d5968126ca4d5eef74192d0e47a64b55eb80f0a
   const [score, setScore] = useState(0);
   const [isScoreUpdated, setIsScoreUpdated] = useState(false);
   const [questionBG, setQuestionBG] = useState({
