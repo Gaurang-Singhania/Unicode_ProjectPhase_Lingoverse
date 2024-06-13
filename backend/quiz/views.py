@@ -125,3 +125,9 @@ class PopulateAPIView(APIView):
                                         diff=difficulty, language=language, correct_alt=c)
             
         return Response({'message':f'Successfully Loaded 25 {difficulty} questions for {language} in db!'}, status=status.HTTP_201_CREATED)
+    
+class AuthCheckView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        user = request.user
+        return Response({'username': user.username, 'email': user.email})
