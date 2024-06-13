@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import '../style.css';
 import arrow from '../assets/landingpage/Arrows.svg';
 import bg from '../assets/landingpage/bg_languagetranslate.svg';
@@ -10,11 +9,11 @@ import hindi from '../assets/landingpage/Hindi.png';
 import japanese from '../assets/landingpage/Japanese.png';
 
 const flags = [
-    { id: 1, name: 'English', code: 'en', image: english },
-    { id: 2, name: 'Spanish', code: 'es', image: spanish },
-    { id: 3, name: 'French', code: 'fr', image: french },
-    { id: 4, name: 'Hindi', code: 'hi', image: hindi },
-    { id: 5, name: 'Japanese', code: 'ja', image: japanese }
+    { id: 1, name: 'English', image: english },
+    { id: 2, name: 'Spanish', image: spanish },
+    { id: 3, name: 'French', image: french },
+    { id: 4, name: 'Hindi', image: hindi },
+    { id: 5, name: 'Japanese', image: japanese }
 ];
 
 const Translate = () => {
@@ -39,27 +38,12 @@ const Translate = () => {
         setInputValue2(event.target.value);
     };
 
-    const handleTranslate = async () => {
-        // const apiKey = 'AIzaSyAw_zVcGq_e0xIKptyXRjIe5N4XfoEN8Wk'; 
-        const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
-        const sourceLang = flags[selectedOption1 - 1].code;
-        const targetLang = flags[selectedOption2 - 1].code;
-
-        try {
-            const response = await axios.post(url, {
-                q: inputValue1,
-                source: sourceLang,
-                target: targetLang,
-                format: 'text'
-            });
-            setInputValue2(response.data.data.translations[0].translatedText);
-        } catch (error) {
-            console.error('Error translating text:', error);
-        }
+    const handleTranslate = () => {
+       
     };
 
     return (
-        <div className='h-screen bg-cover relative' style={{ backgroundImage: `url(${bg})` }}>
+        <div className='h-screen bg-cover bg-center relative' style={{ backgroundImage: `url(${bg})` }}>
             <div className='flex flex-col md:flex-row items-center justify-center h-full'>
                 <div className='w-64 md:w-auto border border-black p-3 m-5 flex flex-col justify-center items-center rounded-xl bg-gray-200'>
                     <div className="flex items-center">
@@ -90,7 +74,7 @@ const Translate = () => {
                 </div>
             </div>
             <div className='flex justify-center items-center'>
-                <button onClick={handleTranslate} className='w-96 hover:bg-purple-700 hover:text-white text-purple-700 text-2xl font-bold py-4 px-8 bg-white rounded-lg absolute bottom-20 shadow-md'>
+                <button onClick={handleTranslate} className='w-96 hover:bg-purple-700 text-purple font-bold py-2 px-4 rounded-full absolute bottom-20 shadow-md'>
                     Translate
                 </button>
             </div>

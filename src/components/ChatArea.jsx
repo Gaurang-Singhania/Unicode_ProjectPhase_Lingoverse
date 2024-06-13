@@ -1,31 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Message from './Message';
 import send from '../assets/landingpage/Send.svg';
 
 const ChatArea = () => {
     const [msg, setMsg] = useState("");
-    const [socket, setSocket] = useState(null);
-
-    useEffect(() => {
-        // Establish WebSocket connection when component mounts
-        const ws = new WebSocket("ws://127.0.0.1:8000/ws/community/1/"); // Replace with your WebSocket URL
-        setSocket(ws);
-
-        // Clean up WebSocket connection when component unmounts
-        return () => {
-            ws.close();
-        };
-    }, []);
 
     const handleChange = (e) => {
         setMsg(e.target.value);
     };
 
     const handleSend = () => {
-        if (socket && socket.readyState === WebSocket.OPEN) {
-            socket.send(msg);
-            setMsg("");
-        }
+        console.log("msg sent");
     };
 
     return (
