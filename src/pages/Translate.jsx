@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import '../style.css';
 import arrow from '../assets/landingpage/Arrows.svg';
@@ -8,6 +8,7 @@ import english from '../assets/landingpage/English.png';
 import french from '../assets/landingpage/French.png';
 import hindi from '../assets/landingpage/Hindi.png';
 import japanese from '../assets/landingpage/Japanese.png';
+import { LanguageContext } from '../context/Languagecontext';
 
 const flags = [
     { id: 1, name: 'English', code: 'en', image: english },
@@ -19,7 +20,9 @@ const flags = [
 
 const Translate = () => {
     const [selectedOption1, setSelectedOption1] = useState('1');
-    const [selectedOption2, setSelectedOption2] = useState('2');
+    const language  = useContext(LanguageContext);
+    console.log(language)
+    const [selectedOption2, setSelectedOption2] = useState(flags.find(flag => flag.name === language.selectedLanguage)?.id)
     const [inputValue1, setInputValue1] = useState('');
     const [inputValue2, setInputValue2] = useState('');
 
@@ -44,6 +47,8 @@ const Translate = () => {
         const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
         const sourceLang = flags[selectedOption1 - 1].code;
         const targetLang = flags[selectedOption2 - 1].code;
+        // const targetLang = language ? language.toLowerCase() : '';
+        console.log(targetLang);
 
         try {
             const response = await axios.post(url, {
@@ -77,7 +82,7 @@ const Translate = () => {
                 <img className='mt-5 gap-5 mr-3 md:mt-0 md:ml-5' src={arrow} alt="Arrow" />
                 <div className='w-64 md:w-auto border border-black p-3 m-5 flex flex-col justify-center items-center rounded-xl bg-gray-200'>
                     <div className="flex items-center">
-                        <img src={flags[selectedOption2 - 1]?.image} alt={flags[selectedOption2 - 1]?.name} className='w-16 h-12 rounded-xl p-2' />
+                    <img src={flags[selectedOption2 - 1]?.image} alt={flags[selectedOption2 - 1]?.name} className='w-16 h-12 rounded-xl p-2' />
                         <select className="custom-select w-52" value={selectedOption2} onChange={handleSelectChange2} style={{ fontFamily: 'Literata, serif', color: '#60359E', fontWeight: 700 }}>
                             {flags.map(flag => (
                                 <option key={flag.id} value={flag.id}>

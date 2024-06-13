@@ -13,10 +13,11 @@ import Quiz from "./pages/quiz";
 import QuizImage from "./pages/quiz-image";
 import QuizAudio from "./pages/quiz-audio";
 import Levels from "./pages/Levels";
+import { LanguageProvider } from "./context/Languagecontext";
 
 function App() {
   return (
-    <>
+    <LanguageProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -34,7 +35,7 @@ function App() {
           <Route path="/levels" element={<Levels />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </LanguageProvider>
   );
 }
 
