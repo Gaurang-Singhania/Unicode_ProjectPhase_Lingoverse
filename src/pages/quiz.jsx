@@ -1,7 +1,8 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, useContext } from "react";
 import component from "../assets/landingpage/Component 4.svg";
 import axios from 'axios';
 import loader from '../assets/loader.gif'
+import { LanguageContext } from '../context/Languagecontext';
 
 function Quiz() {
   const [data,setData]=useState(null)
@@ -14,6 +15,22 @@ function Quiz() {
   const [answerSelected,setAnswerSelected]=useState(false)
   const [clicked,setClicked]=useState(false)
   const [urlvalid,seturlvalid]=useState(true)
+
+  
+  const choosenLanguage = useContext(LanguageContext)
+  const v = choosenLanguage.selectedLanguage;
+  console.log(v)
+
+  const languages = [
+    { id: 1, name: 'English', code: 'en'},
+    { id: 2, name: 'Spanish', code: 'es' },
+    { id: 3, name: 'French', code: 'fr'},
+    { id: 4, name: 'Hindi', code: 'hi' },
+    { id: 5, name: 'Japanese', code: 'ja'}
+];
+
+ const quizLanguage = languages.find(lang => lang.name === v);
+ console.log(quizLanguage.code);
 
   const validateImageUrls = async (url) => {
     try {
@@ -29,7 +46,7 @@ function Quiz() {
         const response = await axios.get('http://localhost:8000/question/', {
             params: {
                 difficulty: 'easy', // Specify the desired difficulty
-                language: 'es' // Specify the desired language
+                language: quizLanguage.code // Specify the desired language
             }
         });
         console.log('Fetched question:', response);
