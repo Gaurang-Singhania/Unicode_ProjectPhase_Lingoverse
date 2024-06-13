@@ -10,7 +10,7 @@ import girl_music from "../assets/landingpage/girl_music.svg";
 import Question from "../assets/landingpage/Question.svg";
 import man from "../assets/landingpage/Man.svg";
 import spanish from "../assets/landingpage/Spanish.png";
-import english from "../assets/landingpage/English.png";
+import english from "../assets/landingpage/russia.png";
 import french from "../assets/landingpage/French.png";
 import hindi from "../assets/landingpage/Hindi.png";
 import japanese from "../assets/landingpage/Japanese.png";
@@ -484,7 +484,7 @@ const Homepage = () => {
           <img
             src={english}
             alt="study"
-            className="absolute xl:top-[15%] xl:left-[20%] md:top-[15%] md:left-[15%] object-cover object-bottom z-20"
+            className="absolute xl:top-[15%] xl:left-[20%] md:top-[15%] md:left-[15%] object-cover object-bottom z-20 border border-black rounded-xl border-solid"
           />
           <img
             src={hindi}

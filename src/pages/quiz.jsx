@@ -22,7 +22,7 @@ function Quiz() {
   console.log(v)
 
   const languages = [
-    { id: 1, name: 'English', code: 'en'},
+    { id: 1, name: 'Russian', code: 'ru'},
     { id: 2, name: 'Spanish', code: 'es' },
     { id: 3, name: 'French', code: 'fr'},
     { id: 4, name: 'Hindi', code: 'hi' },

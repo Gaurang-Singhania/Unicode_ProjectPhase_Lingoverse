@@ -1,7 +1,7 @@
 import React, { useState,useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import CardLayout from '../components/CardLayout';
-import england from '../assets/landingpage/English.png';
+import england from '../assets/landingpage/russia.png';
 import france from '../assets/landingpage/French.png';
 import india from '../assets/landingpage/Hindi.png';
 import japan from '../assets/landingpage/Japanese.png';
@@ -42,7 +42,7 @@ function LanguageSelect() {
           </p>
           
           <div className='container mt-10 mb-10 grid gap-y-14 md:grid-cols-2 justify-items-center mx-2 px-20'>
-            <div onClick={() => handleLanguage('English')}><CardLayout language="English" flag={england} isSelected={selectedLanguage === 'English'} /></div>
+            <div onClick={() => handleLanguage('Russian')}><CardLayout language="Russian" flag={england} isSelected={selectedLanguage === 'Russian'} /></div>
             <div onClick={() => handleLanguage('French')}><CardLayout language="French" flag={france} isSelected={selectedLanguage === 'French'} /></div>
             <div onClick={() => handleLanguage('Hindi')}><CardLayout language="Hindi" flag={india} isSelected={selectedLanguage === 'Hindi'} /></div>
             <div onClick={() => handleLanguage('Japanese')}><CardLayout language="Japanese" flag={japan} isSelected={selectedLanguage === 'Japanese'} /></div>

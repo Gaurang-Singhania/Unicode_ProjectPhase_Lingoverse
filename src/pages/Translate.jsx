@@ -5,6 +5,7 @@ import arrow from '../assets/landingpage/Arrows.svg';
 import bg from '../assets/landingpage/bg_languagetranslate.svg';
 import spanish from '../assets/landingpage/Spanish.png';
 import english from '../assets/landingpage/English.png';
+import russia from '../assets/landingpage/russia.png';
 import french from '../assets/landingpage/French.png';
 import hindi from '../assets/landingpage/Hindi.png';
 import japanese from '../assets/landingpage/Japanese.png';
@@ -15,7 +16,8 @@ const flags = [
     { id: 2, name: 'Spanish', code: 'es', image: spanish },
     { id: 3, name: 'French', code: 'fr', image: french },
     { id: 4, name: 'Hindi', code: 'hi', image: hindi },
-    { id: 5, name: 'Japanese', code: 'ja', image: japanese }
+    { id: 5, name: 'Japanese', code: 'ja', image: japanese },
+    { id: 6, name: 'Russian', code: 'ru', image: russia },
 ];
 
 const Translate = () => {

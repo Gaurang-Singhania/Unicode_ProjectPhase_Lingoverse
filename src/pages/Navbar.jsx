@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { LanguageContext } from "../context/Languagecontext";
 import spanish from "../assets/landingpage/Spanish.png";
-import english from "../assets/landingpage/English.png";
+import english from "../assets/landingpage/russia.png";
 import french from "../assets/landingpage/French.png";
 import hindi from "../assets/landingpage/Hindi.png";
 import japanese from "../assets/landingpage/Japanese.png";
 
 const flags = [
-  { id: 1, name: "English", code: "en", image: english },
+  { id: 1, name: "Russian", code: "ru", image: english },
   { id: 2, name: "Spanish", code: "es", image: spanish },
   { id: 3, name: "French", code: "fr", image: french },
   { id: 4, name: "Hindi", code: "hi", image: hindi },
