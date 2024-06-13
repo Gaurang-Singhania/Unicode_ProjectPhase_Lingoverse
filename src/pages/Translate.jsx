@@ -59,7 +59,7 @@ const Translate = () => {
     };
 
     return (
-        <div className='h-screen bg-cover bg-center relative' style={{ backgroundImage: `url(${bg})` }}>
+        <div className='h-screen bg-cover relative' style={{ backgroundImage: `url(${bg})` }}>
             <div className='flex flex-col md:flex-row items-center justify-center h-full'>
                 <div className='w-64 md:w-auto border border-black p-3 m-5 flex flex-col justify-center items-center rounded-xl bg-gray-200'>
                     <div className="flex items-center">
@@ -90,7 +90,7 @@ const Translate = () => {
                 </div>
             </div>
             <div className='flex justify-center items-center'>
-                <button onClick={handleTranslate} className='w-96 hover:bg-purple-700 text-purple font-bold py-2 px-4 rounded-full absolute bottom-20 shadow-md'>
+                <button onClick={handleTranslate} className='w-96 hover:bg-purple-700 hover:text-white text-purple-700 text-2xl font-bold py-4 px-8 bg-white rounded-lg absolute bottom-20 shadow-md'>
                     Translate
                 </button>
             </div>

@@ -2,14 +2,18 @@ import React from 'react';
 import logo from '../assets/landingpage/Subtract.svg';
 import user from '../assets/landingpage/User.svg';
 import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { LanguageContext } from '../context/Languagecontext';
 
 const Navbar = () => {
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
   const navigate = useNavigate();
   const handleClick = (e) => {
     navigate('/login')
+    console.log(selectedLanguage)
   }
   return (
-    <nav className="custom-gradient3 rounded">
+    <nav className="bg-indigo-950 rounded">
       <div className="flex items-center justify-between h-12">
         {/* Logo */}
         <div className="flex items-center"> 
