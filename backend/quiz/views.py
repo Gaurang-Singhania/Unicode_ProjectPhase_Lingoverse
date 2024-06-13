@@ -11,6 +11,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from quiz.quiz_gen import get_words, translate_into, scrape_images
 from .models import *
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.exceptions import AuthenticationFailed
 # Create your views here.
 
 # def translate_text(text, target_language_code):
@@ -131,3 +133,28 @@ class AuthCheckView(APIView):
     def get(self, request):
         user = request.user
         return Response({'username': user.username, 'email': user.email})
+
+class calculateScore(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request):
+        score = request.data.get('score')
+        # email = request.data['email']
+        # user = User.objects.get(email=email)
+        user = request.user
+        if not user.is_authenticated:
+            raise AuthenticationFailed('User is not authenticated')
+            
+        # print(user)
+        if(score > 20):
+            if user.rank == 'beginner':
+                user.rank = 'intermediate'
+            elif user.rank == 'intermediate':
+                user.rank = 'expert'
+            user.save()
+
+        data = request.data.copy()
+        data['user'] = user.id
+        serializer = ScoreSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(user.rank)

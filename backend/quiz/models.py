@@ -1,54 +1,48 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import BaseUserManager
 import uuid
+# Create your models here.
 
-# Create your models here.    
-class WordQuestion(models.Model):
-    DIFFICULTY_CHOICES = (
-        ('easy', 'Beginner'),
-        ('medium', 'Elementary'),
-        ('hard', 'Intermediate'),
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password, **extra_fields):
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        if password is None:
+            raise ValueError('Superusers must have a password')
+
+        return self.create_user(email, password, **extra_fields)
+
+
+class User(AbstractUser):
+    RANKS = (
+        ('beginner', 'Beginner'),
+        ('intermediate', 'Intermediate'),
+        ('expert', 'Expert')
     )
-    LANGUAGE_CHOICES = (
-        ('en', 'English'),
-        ('fr', 'French'),
-        ('es', 'Spanish'),
-        ('ja', 'Japanese'),
-        ('hi', 'Hindi'),
-    )
-    word = models.CharField(max_length=255)
-    correct_alt = models.CharField(max_length=255)
-    pronounciation = models.CharField(max_length=255, null=True)
-    alt1 = models.CharField(max_length=255)
-    alt2 = models.CharField(max_length=255)
-    alt3 = models.CharField(max_length=255)
-    diff = models.CharField(max_length=6, choices=DIFFICULTY_CHOICES)
-    language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES)
-    repeated = models.IntegerField(default=0)
-    def __str__(self):
-        return self.language + ' ' + self.diff + ' ' + str(self.id)
+    name = models.CharField(max_length=255)
+    email = models.CharField(max_length=255, unique=True)
+    password = models.CharField(max_length=255)
+    username = None
+    rank = models.CharField(max_length=20, choices=RANKS, default='beginner')
+    src_lang = models.CharField(max_length=20)
+    target_lang = models.CharField(max_length=20)
+    # is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
+
     
-class ImageQuestion(models.Model):
-    DIFFICULTY_CHOICES = (
-        ('easy', 'Beginner'),
-        ('medium', 'Elementary'),
-        ('hard', 'Intermediate'),
-    )
-    LANGUAGE_CHOICES = (
-        ('en', 'English'),
-        ('fr', 'French'),
-        ('es', 'Spanish'),
-        ('ja', 'Japanese'),
-        ('hi', 'Hindi'),
-    )
-    word = models.CharField(max_length=255)
-    pronounciation = models.CharField(max_length=255, null=True)
-    correct_url = models.CharField(max_length=300)
-    url1 = models.CharField(max_length=300)
-    url2 = models.CharField(max_length=300)
-    url3 = models.CharField(max_length=300)
-    diff = models.CharField(max_length=6, choices=DIFFICULTY_CHOICES)
-    language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES)
-    repeated = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.language + ' ' + self.diff + ' ' + str(self.id)
