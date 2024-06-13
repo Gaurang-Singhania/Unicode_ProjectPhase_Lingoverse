@@ -16,7 +16,7 @@ function Quiz() {
   const [clicked,setClicked]=useState(false)
   const [urlvalid,seturlvalid]=useState(true)
 
-  
+
   const choosenLanguage = useContext(LanguageContext)
   const v = choosenLanguage.selectedLanguage;
   console.log(v)
@@ -103,7 +103,7 @@ const populateDatabase = async () => {
     try {
         await axios.post('http://localhost:8000/populate/', {
             difficulty: 'easy', // Specify the desired difficulty
-            language: 'es' // Specify the desired language
+            language: quizLanguage.code // Specify the desired language
         });
         console.log('Database populated successfully');
         fetchQuestion(); // Fetch a question after populating the database
