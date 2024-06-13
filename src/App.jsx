@@ -12,8 +12,11 @@ import Chat from "./pages/Chat";
 import Quiz from "./pages/quiz";
 import QuizImage from "./pages/quiz-image";
 import QuizAudio from "./pages/quiz-audio";
+<<<<<<< HEAD
+=======
 import Levels from "./pages/Levels";
 import { LanguageProvider } from "./context/Languagecontext";
+>>>>>>> 7d5968126ca4d5eef74192d0e47a64b55eb80f0a
 
 function App() {
   return (
@@ -32,7 +35,6 @@ function App() {
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/quiz-img" element={<QuizImage />} />
           <Route path="/quiz-audio" element={<QuizAudio />} />
-          <Route path="/levels" element={<Levels />} />
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

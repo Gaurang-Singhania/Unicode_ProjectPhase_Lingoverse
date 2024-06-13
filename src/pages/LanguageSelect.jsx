@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import CardLayout from '../components/CardLayout';
 import england from '../assets/landingpage/English.png';
@@ -7,11 +7,10 @@ import india from '../assets/landingpage/Hindi.png';
 import japan from '../assets/landingpage/Japanese.png';
 import spain from '../assets/landingpage/Spanish.png';
 import bgImg from "../assets/landingpage/MacBook Air - 60.svg";
-import { LanguageContext } from '../context/Languagecontext';
 
 function LanguageSelect() {
   const navigate = useNavigate();
-  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
 
   const handleClick = () => {
     navigate('/joincommunities')

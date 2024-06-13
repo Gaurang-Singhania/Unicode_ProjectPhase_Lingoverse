@@ -79,8 +79,8 @@ from .models import *
     
 class FetchQuestionAPIView(APIView):
     def get(self, request):
-        difficulty = request.query_params.get('difficulty')
-        language = request.query_params.get('language')
+        difficulty = request.data.get('difficulty')
+        language = request.data.get('language')
         choices = 10*['image_q'] + 15*['word_q']
         choice = random.choice(choices)
         try:

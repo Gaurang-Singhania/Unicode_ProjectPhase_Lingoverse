@@ -2,6 +2,14 @@ import React from "react";
 import logo from "../assets/landingpage/Subtract.svg";
 import user from "../assets/landingpage/User.svg";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
+
+const Navbar = () => {
+  const navigate = useNavigate();
+  const handleClick = (e) => {
+    navigate('/login')
+  }
+=======
 import { useState, useContext } from "react";
 import { LanguageContext } from "../context/Languagecontext";
 import spanish from "../assets/landingpage/Spanish.png";
@@ -29,8 +37,9 @@ const Navbar = () => {
     navigate("/login");
     console.log(selectedLanguage);
   };
+>>>>>>> 7d5968126ca4d5eef74192d0e47a64b55eb80f0a
   return (
-    <nav className="bg-indigo-950 rounded">
+    <nav className="custom-gradient3 rounded">
       <div className="flex items-center justify-between h-12">
         {/* Logo */}
         <div className="flex items-center">

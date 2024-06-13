@@ -66,7 +66,6 @@ const Homepage = () => {
     navigate("/login");
   };
   const scrollUp = () => {
-    console.log("ScrollUp function triggered");
     window.scroll({
       top: 0,
       behavior: "auto",
@@ -218,7 +217,7 @@ const Homepage = () => {
               className="object-cover object-bottom z-20 w-[30vw]"
             />
           </motion.div>
-          <motion.div className="scroll absolute left-[50%] top-[85%] shadow-xl"></motion.div>
+          <motion.div class="scroll absolute left-[50%] top-[85%] shadow-xl"></motion.div>
         </motion.div>
       </motion.div>
 
