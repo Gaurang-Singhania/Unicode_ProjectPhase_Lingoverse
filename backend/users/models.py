@@ -25,10 +25,16 @@ class CustomUserManager(BaseUserManager):
 
 
 class User(AbstractUser):
+    RANKS = (
+        ('beginner', 'Beginner'),
+        ('intermediate', 'Intermediate'),
+        ('expert', 'Expert')
+    )
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
     username = None
+    rank = models.CharField(max_length=20, choices=RANKS, default='beginner')
     src_lang = models.CharField(max_length=20)
     target_lang = models.CharField(max_length=20)
     # is_staff = models.BooleanField(default=False)
