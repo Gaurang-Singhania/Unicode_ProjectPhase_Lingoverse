@@ -45,7 +45,8 @@ const Translate = () => {
     };
 
     const handleTranslate = async () => {
-        // const apiKey = 'AIzaSyAw_zVcGq_e0xIKptyXRjIe5N4XfoEN8Wk'; 
+        const apiKey = 'AIzaSyDkK8LkE-AHTE_pOugasHlILQUFriwEt28'; //Neha's api key
+        //Gaurang's api key: AIzaSyAw_zVcGq_e0xIKptyXRjIe5N4XfoEN8Wk
         const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
         const sourceLang = flags[selectedOption1 - 1].code;
         const targetLang = flags[selectedOption2 - 1].code;
