@@ -87,13 +87,20 @@ class FetchQuestionAPIView(APIView):
         choice = random.choice(choices)
         try:
             if choice=='image_q':
-                q = ImageQuestion.objects.filter(language=language, diff=difficulty, repeated__lt=3).order_by('?')[0]
+                q = ImageQuestion.objects.filter(language=language, diff=difficulty, repeated__lt=3).order_by('?').first()
+                # If no questions are available, reset repeated and retry
+                if not q:
+                    ImageQuestion.objects.filter(language=language, diff=difficulty).update(repeated=0)
+                    q = ImageQuestion.objects.filter(language=language, diff=difficulty).order_by('?').first()
                 q.repeated+=1
                 q.save()
                 serializer = ImageQuestionSerializer(q)
                 return Response({'type':'image', **serializer.data}, status=status.HTTP_200_OK)
             else:
-                q = random.choice(WordQuestion.objects.filter(language=language, diff=difficulty, repeated__lt=3))
+                q = WordQuestion.objects.filter(language=language, diff=difficulty, repeated__lt=3).order_by('?').first()
+                if not q:
+                    WordQuestion.objects.filter(language=language, diff=difficulty).update(repeated=0)
+                    q = WordQuestion.objects.filter(language=language, diff=difficulty).order_by('?').first()
                 q.repeated+=1                
                 q.save()
                 serializer = WordQuestionSerializer(q)
